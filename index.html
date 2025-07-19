@@ -18,30 +18,54 @@
         font: inherit;
       }
       main {
-        background-color: #0f0f0d;
         color: white;
-        font: Luminari;
-        font-size: 16px;
+        font-size: 24px;
 
         min-height: 100vh;
         width: 100%;
         height: 100%;
 
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        --s: 6px; /* control the size*/
+        --c1: #3b3239;
+        --c2: #0E0909;
+        
+        --g:#0000 66%,var(--c1) 68% 98%,#0000;
+        background:
+            radial-gradient(30% 30% at 0%   30%,var(--g))
+            var(--s) calc(9*var(--s)),
+            radial-gradient(30% 30% at 100% 30%,var(--g))
+            var(--s) calc(-1*var(--s)),
+            radial-gradient(30% 30% at 30% 100%,var(--g))
+            calc(10*var(--s)) 0,
+            radial-gradient(30% 30% at 30% 0%  ,var(--g))
+            var(--c2);
+        background-size: calc(20*var(--s)) calc(20*var(--s));
+      }
+      button {
+        width: min(40rem, 30vw);
+        height: 3rem;
+
       }
       .chosen-sets-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1rem;
         padding: 1rem;
+        height: calc(min(20rem, 40vh) * 2);
       }
       .chosen-set {
-        width: min(20rem, 20vw);
-        height: min(10rem, 40vh);
+        background: #0E0909;
+        border-radius: 1rem;
+        width: min(30rem, 20vw);
+        height: min(20rem, 40vh);
         display: flex;
         flex-direction: column;
+        justify-content: space-around;
         align-items: center;
         border: 1px solid orange;
         color: orange;
@@ -50,11 +74,20 @@
       }
       .flex {
         display: flex;
+        justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .flex-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
       }
       .set-symbol {
-        width: 4rem;
-        height: 4rem;
+        font-size: 2rem;
       }
     </style>
 <style>
@@ -1871,26 +1904,26 @@
   {
     "Set": "Limited Edition Alpha",
     "Expansion Code": "\u2014",
-    "Pre-release Date": "295[I]",
+    "Pre-release Date": "295",
     "Release Date": "74",
     "Total Cards": "95"
   },
   {
     "Set": "Limited Edition Beta",
     "Expansion Code": "\u2014",
-    "Pre-release Date": "302[I]",
+    "Pre-release Date": "302",
     "Release Date": "75",
     "Total Cards": "95"
   },
   {
     "Set": "Unlimited Edition",
     "Expansion Code": "\u2014",
-    "Pre-release Date": "302[I]",
+    "Pre-release Date": "302",
     "Release Date": "75",
     "Total Cards": "95"
   },
   {
-    "Set": "Revised Edition[II]",
+    "Set": "Revised Edition",
     "Expansion Code": "\u2014",
     "Pre-release Date": "306",
     "Release Date": "75",
@@ -1947,49 +1980,49 @@
   },
   {
     "Set": "Magic 2010",
-    "Expansion Code": "July 11, 2009[14]",
+    "Expansion Code": "July 11, 2009",
     "Pre-release Date": "249",
     "Release Date": "101",
     "Total Cards": "60"
   },
   {
     "Set": "Magic 2011",
-    "Expansion Code": "July 10, 2010[16]",
+    "Expansion Code": "July 10, 2010",
     "Pre-release Date": "249",
     "Release Date": "101",
     "Total Cards": "60"
   },
   {
     "Set": "Magic 2012",
-    "Expansion Code": "July 9, 2011[17]",
+    "Expansion Code": "July 9, 2011",
     "Pre-release Date": "249",
     "Release Date": "101",
     "Total Cards": "60"
   },
   {
     "Set": "Magic 2013",
-    "Expansion Code": "July 7, 2012[18]",
+    "Expansion Code": "July 7, 2012",
     "Pre-release Date": "249",
     "Release Date": "101",
     "Total Cards": "60"
   },
   {
     "Set": "Magic 2014",
-    "Expansion Code": "July 13, 2013[19]",
+    "Expansion Code": "July 13, 2013",
     "Pre-release Date": "249",
     "Release Date": "101",
     "Total Cards": "60"
   },
   {
     "Set": "Magic 2015",
-    "Expansion Code": "July 12, 2014[20]",
+    "Expansion Code": "July 12, 2014",
     "Pre-release Date": "284",
     "Release Date": "101",
-    "Total Cards": "80[21]"
+    "Total Cards": "80"
   },
   {
     "Set": "Magic Origins",
-    "Expansion Code": "July 11, 2015[22]",
+    "Expansion Code": "July 11, 2015",
     "Pre-release Date": "288",
     "Release Date": "101",
     "Total Cards": "80"
@@ -2030,498 +2063,498 @@
         "Set": "Arabian Nights",
         "Expansion Code": "ARN",
         "Pre-release Date": "none",
-        "Release Date": "December 1993[32]",
-        "Total Cards": "92[V]"
+        "Release Date": "December 1993",
+        "Total Cards": "92"
     },
     {
         "Set": "Antiquities",
         "Expansion Code": "ATQ",
         "Pre-release Date": "none",
-        "Release Date": "March 1994[33]",
-        "Total Cards": "100[VI]"
+        "Release Date": "March 1994",
+        "Total Cards": "100"
     },
     {
         "Set": "Legends",
         "Expansion Code": "LEG",
         "Pre-release Date": "none",
-        "Release Date": "June 1994[34]",
+        "Release Date": "June 1994",
         "Total Cards": "310"
     },
     {
         "Set": "The Dark",
         "Expansion Code": "DRK",
         "Pre-release Date": "none",
-        "Release Date": "August 1994[35]",
+        "Release Date": "August 1994",
         "Total Cards": "119"
     },
     {
         "Set": "Fallen Empires",
         "Expansion Code": "FEM",
         "Pre-release Date": "none",
-        "Release Date": "November 1994[36]",
-        "Total Cards": "187[VII]"
+        "Release Date": "November 1994",
+        "Total Cards": "187"
     },
     {
         "Set": "Ice Age",
         "Expansion Code": "ICE",
-        "Pre-release Date": "none[VII]",
-        "Release Date": "June 1995[37]",
+        "Pre-release Date": "none",
+        "Release Date": "June 1995",
         "Total Cards": "383"
     },
     {
-        "Set": "Homelands[IX]",
+        "Set": "Homelands",
         "Expansion Code": "HML",
-        "Pre-release Date": "October 14, 1995[VII]",
-        "Release Date": "October 1995[38]",
-        "Total Cards": "140[X]"
+        "Pre-release Date": "October 14, 1995",
+        "Release Date": "October 1995",
+        "Total Cards": "140"
     },
     {
         "Set": "Alliances",
         "Expansion Code": "ALL",
-        "Pre-release Date": "May 18, 1996[39]",
-        "Release Date": "June 10, 1996[10]",
-        "Total Cards": "199[XI]"
+        "Pre-release Date": "May 18, 1996",
+        "Release Date": "June 10, 1996",
+        "Total Cards": "199"
     },
     {
         "Set": "Mirage",
         "Expansion Code": "MIR",
-        "Pre-release Date": "September 21, 1996[40][XXV]",
-        "Release Date": "October 7, 1996[10]",
+        "Pre-release Date": "September 21, 1996",
+        "Release Date": "October 7, 1996",
         "Total Cards": "350"
     },
     {
         "Set": "Visions",
         "Expansion Code": "VIS",
-        "Pre-release Date": "January 11, 1997[41]",
-        "Release Date": "February 3, 1997[42]",
+        "Pre-release Date": "January 11, 1997",
+        "Release Date": "February 3, 1997",
         "Total Cards": "167"
     },
     {
         "Set": "Weatherlight",
         "Expansion Code": "WTH",
-        "Pre-release Date": "May 31, 1997[43]",
-        "Release Date": "June 9, 1997[10]",
+        "Pre-release Date": "May 31, 1997",
+        "Release Date": "June 9, 1997",
         "Total Cards": "167"
     },
     {
         "Set": "Tempest",
         "Expansion Code": "TMP",
-        "Pre-release Date": "October 4, 1997[44]",
-        "Release Date": "October 13, 1997[10]",
+        "Pre-release Date": "October 4, 1997",
+        "Release Date": "October 13, 1997",
         "Total Cards": "350"
     },
     {
         "Set": "Stronghold",
         "Expansion Code": "STH",
-        "Pre-release Date": "February 21, 1998[45]",
-        "Release Date": "March 2, 1998[10]",
+        "Pre-release Date": "February 21, 1998",
+        "Release Date": "March 2, 1998",
         "Total Cards": "143"
     },
     {
         "Set": "Exodus",
         "Expansion Code": "EXO",
-        "Pre-release Date": "June 6, 1998[46]",
-        "Release Date": "June 15, 1998[10]",
+        "Pre-release Date": "June 6, 1998",
+        "Release Date": "June 15, 1998",
         "Total Cards": "143"
     },
     {
         "Set": "Urza's Saga",
         "Expansion Code": "USG",
-        "Pre-release Date": "October 3, 1998[47]",
-        "Release Date": "October 12, 1998[48]",
+        "Pre-release Date": "October 3, 1998",
+        "Release Date": "October 12, 1998",
         "Total Cards": "350"
     },
     {
         "Set": "Urza's Legacy",
         "Expansion Code": "ULG",
-        "Pre-release Date": "February 6, 1999[49]",
-        "Release Date": "February 15, 1999[10]",
+        "Pre-release Date": "February 6, 1999",
+        "Release Date": "February 15, 1999",
         "Total Cards": "143"
     },
     {
         "Set": "Urza's Destiny",
         "Expansion Code": "UDS",
-        "Pre-release Date": "May 29, 1999[44]",
-        "Release Date": "June 7, 1999[50]",
+        "Pre-release Date": "May 29, 1999",
+        "Release Date": "June 7, 1999",
         "Total Cards": "143"
     },
     {
         "Set": "Mercadian Masques",
         "Expansion Code": "MMQ",
-        "Pre-release Date": "September 25, 1999[51]",
-        "Release Date": "October 4, 1999[52]",
+        "Pre-release Date": "September 25, 1999",
+        "Release Date": "October 4, 1999",
         "Total Cards": "350"
     },
     {
         "Set": "Nemesis",
         "Expansion Code": "NEM",
-        "Pre-release Date": "February 5, 2000[53]",
-        "Release Date": "February 14, 2000[54]",
+        "Pre-release Date": "February 5, 2000",
+        "Release Date": "February 14, 2000",
         "Total Cards": "143"
     },
     {
         "Set": "Prophecy",
         "Expansion Code": "PCY",
         "Pre-release Date": "May 27, 2000",
-        "Release Date": "June 5, 2000[55]",
+        "Release Date": "June 5, 2000",
         "Total Cards": "143"
     },
     {
         "Set": "Invasion",
         "Expansion Code": "INV",
-        "Pre-release Date": "September 23, 2000[44]",
-        "Release Date": "October 2, 2000[56]",
+        "Pre-release Date": "September 23, 2000",
+        "Release Date": "October 2, 2000",
         "Total Cards": "350"
     },
     {
         "Set": "Planeshift",
         "Expansion Code": "PLS",
-        "Pre-release Date": "January 27, 2001[58]",
-        "Release Date": "February 5, 2001[58]",
+        "Pre-release Date": "January 27, 2001",
+        "Release Date": "February 5, 2001",
         "Total Cards": "143"
     },
     {
         "Set": "Apocalypse",
         "Expansion Code": "APC",
-        "Pre-release Date": "May 26, 2001[59]",
+        "Pre-release Date": "May 26, 2001",
         "Release Date": "June 4, 2001",
         "Total Cards": "143"
     },
     {
         "Set": "Odyssey",
         "Expansion Code": "ODY",
-        "Pre-release Date": "September 22, 2001[44]",
+        "Pre-release Date": "September 22, 2001",
         "Release Date": "October 1, 2001",
         "Total Cards": "350"
     },
     {
         "Set": "Torment",
         "Expansion Code": "TOR",
-        "Pre-release Date": "January 26, 2002[60]",
-        "Release Date": "February 4, 2002[60]",
+        "Pre-release Date": "January 26, 2002",
+        "Release Date": "February 4, 2002",
         "Total Cards": "143"
     },
     {
         "Set": "Judgment",
         "Expansion Code": "JUD",
         "Pre-release Date": "May 18, 2002",
-        "Release Date": "May 27, 2002[61]",
+        "Release Date": "May 27, 2002",
         "Total Cards": "143"
     },
     {
         "Set": "Onslaught",
         "Expansion Code": "ONS",
-        "Pre-release Date": "September 28, 2002[62]",
-        "Release Date": "October 7, 2002[62]",
+        "Pre-release Date": "September 28, 2002",
+        "Release Date": "October 7, 2002",
         "Total Cards": "350"
     },
     {
         "Set": "Legions",
         "Expansion Code": "LGN",
-        "Pre-release Date": "January 25, 2003[63]",
+        "Pre-release Date": "January 25, 2003",
         "Release Date": "February 3, 2003",
         "Total Cards": "145"
     },
     {
         "Set": "Scourge",
         "Expansion Code": "SCG",
-        "Pre-release Date": "May 17, 2003[64]",
-        "Release Date": "May 26, 2003[64]",
+        "Pre-release Date": "May 17, 2003",
+        "Release Date": "May 26, 2003",
         "Total Cards": "143"
     },
     {
         "Set": "Mirrodin",
         "Expansion Code": "MRD",
-        "Pre-release Date": "September 20, 2003[65]",
-        "Release Date": "October 2, 2003[65]",
+        "Pre-release Date": "September 20, 2003",
+        "Release Date": "October 2, 2003",
         "Total Cards": "306"
     },
     {
         "Set": "Darksteel",
         "Expansion Code": "DST",
-        "Pre-release Date": "January 24, 2004[66]",
-        "Release Date": "February 6, 2004[66]",
+        "Pre-release Date": "January 24, 2004",
+        "Release Date": "February 6, 2004",
         "Total Cards": "165"
     },
     {
         "Set": "Fifth Dawn",
         "Expansion Code": "5DN",
-        "Pre-release Date": "May 22, 2004[67]",
-        "Release Date": "June 4, 2004[68]",
+        "Pre-release Date": "May 22, 2004",
+        "Release Date": "June 4, 2004",
         "Total Cards": "165"
     },
     {
         "Set": "Champions of Kamigawa",
         "Expansion Code": "CHK",
-        "Pre-release Date": "September 18, 2004[69]",
-        "Release Date": "October 1, 2004[70]",
+        "Pre-release Date": "September 18, 2004",
+        "Release Date": "October 1, 2004",
         "Total Cards": "306"
     },
     {
         "Set": "Betrayers of Kamigawa",
         "Expansion Code": "BOK",
-        "Pre-release Date": "January 22, 2005[71]",
-        "Release Date": "February 4, 2005[70]",
+        "Pre-release Date": "January 22, 2005",
+        "Release Date": "February 4, 2005",
         "Total Cards": "165"
     },
     {
         "Set": "Saviors of Kamigawa",
         "Expansion Code": "SOK",
-        "Pre-release Date": "May 21, 2005[72]",
-        "Release Date": "June 3, 2005[70]",
+        "Pre-release Date": "May 21, 2005",
+        "Release Date": "June 3, 2005",
         "Total Cards": "165"
     },
     {
         "Set": "Ravnica: City of Guilds",
         "Expansion Code": "RAV",
-        "Pre-release Date": "September 24, 2005[74]",
-        "Release Date": "October 7, 2005[75]",
+        "Pre-release Date": "September 24, 2005",
+        "Release Date": "October 7, 2005",
         "Total Cards": "306"
     },
     {
         "Set": "Guildpact",
         "Expansion Code": "GPT",
-        "Pre-release Date": "January 21, 2006[76]",
-        "Release Date": "February 3, 2006[76]",
+        "Pre-release Date": "January 21, 2006",
+        "Release Date": "February 3, 2006",
         "Total Cards": "165"
     },
     {
         "Set": "Dissension",
         "Expansion Code": "DIS",
-        "Pre-release Date": "April 22, 2006[77]",
-        "Release Date": "May 5, 2006[77]",
+        "Pre-release Date": "April 22, 2006",
+        "Release Date": "May 5, 2006",
         "Total Cards": "180"
     },
     {
-        "Set": "Coldsnap[IX]",
+        "Set": "Coldsnap",
         "Expansion Code": "CSP",
-        "Pre-release Date": "July 8, 2006[78]",
-        "Release Date": "July 21, 2006[79]",
+        "Pre-release Date": "July 8, 2006",
+        "Release Date": "July 21, 2006",
         "Total Cards": "155"
     },
     {
         "Set": "Time Spiral",
-        "Expansion Code": "TSP/TSB[XV]",
-        "Pre-release Date": "September 23, 2006[80]",
-        "Release Date": "October 6, 2006[80]",
-        "Total Cards": "422[XV]"
+        "Expansion Code": "TSP/TSB",
+        "Pre-release Date": "September 23, 2006",
+        "Release Date": "October 6, 2006",
+        "Total Cards": "422"
     },
     {
         "Set": "Planar Chaos",
         "Expansion Code": "PLC",
-        "Pre-release Date": "January 20, 2007[82]",
-        "Release Date": "February 2, 2007[82]",
-        "Total Cards": "165[XV]"
+        "Pre-release Date": "January 20, 2007",
+        "Release Date": "February 2, 2007",
+        "Total Cards": "165"
     },
     {
         "Set": "Future Sight",
         "Expansion Code": "FUT",
-        "Pre-release Date": "April 21, 2007[83]",
-        "Release Date": "May 4, 2007[83]",
-        "Total Cards": "180[XV]"
+        "Pre-release Date": "April 21, 2007",
+        "Release Date": "May 4, 2007",
+        "Total Cards": "180"
     },
     {
         "Set": "Lorwyn",
         "Expansion Code": "LRW",
-        "Pre-release Date": "September 29, 2007[85]",
-        "Release Date": "October 12, 2007[85]",
+        "Pre-release Date": "September 29, 2007",
+        "Release Date": "October 12, 2007",
         "Total Cards": "301"
     },
     {
         "Set": "Morningtide",
         "Expansion Code": "MOR",
-        "Pre-release Date": "January 19, 2008[86]",
-        "Release Date": "February 1, 2008[86]",
+        "Pre-release Date": "January 19, 2008",
+        "Release Date": "February 1, 2008",
         "Total Cards": "150"
     },
     {
         "Set": "Shadowmoor",
         "Expansion Code": "SHM",
-        "Pre-release Date": "April 19, 2008[88]",
-        "Release Date": "May 2, 2008[88]",
+        "Pre-release Date": "April 19, 2008",
+        "Release Date": "May 2, 2008",
         "Total Cards": "301"
     },
     {
         "Set": "Eventide",
         "Expansion Code": "EVE",
-        "Pre-release Date": "July 12, 2008[89]",
-        "Release Date": "July 25, 2008[89]",
+        "Pre-release Date": "July 12, 2008",
+        "Release Date": "July 25, 2008",
         "Total Cards": "180"
     },
     {
         "Set": "Shards of Alara",
         "Expansion Code": "ALA",
-        "Pre-release Date": "September 27, 2008[91]",
-        "Release Date": "October 3, 2008[92]",
+        "Pre-release Date": "September 27, 2008",
+        "Release Date": "October 3, 2008",
         "Total Cards": "249"
     },
     {
         "Set": "Conflux",
         "Expansion Code": "CON",
-        "Pre-release Date": "January 31, 2009[93]",
-        "Release Date": "February 6, 2009[93]",
+        "Pre-release Date": "January 31, 2009",
+        "Release Date": "February 6, 2009",
         "Total Cards": "145"
     },
     {
         "Set": "Alara Reborn",
         "Expansion Code": "ARB",
-        "Pre-release Date": "April 25, 2009[94]",
-        "Release Date": "April 30, 2009[94]",
+        "Pre-release Date": "April 25, 2009",
+        "Release Date": "April 30, 2009",
         "Total Cards": "145"
     },
     {
         "Set": "Zendikar",
         "Expansion Code": "ZEN",
-        "Pre-release Date": "September 26, 2009[95]",
-        "Release Date": "October 2, 2009[95]",
+        "Pre-release Date": "September 26, 2009",
+        "Release Date": "October 2, 2009",
         "Total Cards": "249"
     },
     {
         "Set": "Worldwake",
         "Expansion Code": "WWK",
-        "Pre-release Date": "January 30, 2010[96]",
-        "Release Date": "February 5, 2010[96]",
+        "Pre-release Date": "January 30, 2010",
+        "Release Date": "February 5, 2010",
         "Total Cards": "145"
     },
     {
         "Set": "Rise of the Eldrazi",
         "Expansion Code": "ROE",
-        "Pre-release Date": "April 17, 2010[97]",
-        "Release Date": "April 23, 2010[97]",
+        "Pre-release Date": "April 17, 2010",
+        "Release Date": "April 23, 2010",
         "Total Cards": "248"
     },
     {
         "Set": "Scars of Mirrodin",
         "Expansion Code": "SOM",
-        "Pre-release Date": "September 25, 2010[99]",
-        "Release Date": "October 1, 2010[99]",
+        "Pre-release Date": "September 25, 2010",
+        "Release Date": "October 1, 2010",
         "Total Cards": "249"
     },
     {
         "Set": "Mirrodin Besieged",
         "Expansion Code": "MBS",
-        "Pre-release Date": "January 29, 2011[100]",
-        "Release Date": "February 4, 2011[100]",
+        "Pre-release Date": "January 29, 2011",
+        "Release Date": "February 4, 2011",
         "Total Cards": "155"
     },
     {
         "Set": "New Phyrexia",
         "Expansion Code": "NPH",
-        "Pre-release Date": "May 7, 2011[101][102]",
-        "Release Date": "May 13, 2011[101][102]",
+        "Pre-release Date": "May 7, 2011",
+        "Release Date": "May 13, 2011",
         "Total Cards": "175"
     },
     {
         "Set": "Innistrad",
-        "Expansion Code": "ISD[104]",
-        "Pre-release Date": "September 24, 2011[105]",
-        "Release Date": "September 30, 2011[105]",
-        "Total Cards": "264[XXVII]"
+        "Expansion Code": "ISD",
+        "Pre-release Date": "September 24, 2011",
+        "Release Date": "September 30, 2011",
+        "Total Cards": "264"
     },
     {
         "Set": "Dark Ascension",
-        "Expansion Code": "DKA[107]",
-        "Pre-release Date": "January 28, 2012[107]",
-        "Release Date": "February 3, 2012[107]",
-        "Total Cards": "158[XXVII]"
+        "Expansion Code": "DKA",
+        "Pre-release Date": "January 28, 2012",
+        "Release Date": "February 3, 2012",
+        "Total Cards": "158"
     },
     {
         "Set": "Avacyn Restored",
-        "Expansion Code": "AVR[108]",
-        "Pre-release Date": "April 28, 2012[108]",
-        "Release Date": "May 4, 2012[108]",
+        "Expansion Code": "AVR",
+        "Pre-release Date": "April 28, 2012",
+        "Release Date": "May 4, 2012",
         "Total Cards": "244"
     },
     {
         "Set": "Return to Ravnica",
-        "Expansion Code": "RTR[109]",
-        "Pre-release Date": "September 29, 2012[109]",
-        "Release Date": "October 5, 2012[109]",
+        "Expansion Code": "RTR",
+        "Pre-release Date": "September 29, 2012",
+        "Release Date": "October 5, 2012",
         "Total Cards": "274"
     },
     {
         "Set": "Gatecrash",
-        "Expansion Code": "GTC[111]",
-        "Pre-release Date": "January 26, 2013[111]",
-        "Release Date": "February 1, 2013[111]",
+        "Expansion Code": "GTC",
+        "Pre-release Date": "January 26, 2013",
+        "Release Date": "February 1, 2013",
         "Total Cards": "249"
     },
     {
         "Set": "Dragon's Maze",
-        "Expansion Code": "DGM[112]",
-        "Pre-release Date": "April 27, 2013[112]",
-        "Release Date": "May 3, 2013[112]",
-        "Total Cards": "156[XXVIII]"
+        "Expansion Code": "DGM",
+        "Pre-release Date": "April 27, 2013",
+        "Release Date": "May 3, 2013",
+        "Total Cards": "156"
     },
     {
         "Set": "Theros",
-        "Expansion Code": "THS[113]",
-        "Pre-release Date": "September 21, 2013[113]",
-        "Release Date": "September 27, 2013[113]",
+        "Expansion Code": "THS",
+        "Pre-release Date": "September 21, 2013",
+        "Release Date": "September 27, 2013",
         "Total Cards": "249"
     },
     {
         "Set": "Born of the Gods",
-        "Expansion Code": "BNG[114]",
-        "Pre-release Date": "February 1, 2014[114]",
-        "Release Date": "February 7, 2014[114]",
+        "Expansion Code": "BNG",
+        "Pre-release Date": "February 1, 2014",
+        "Release Date": "February 7, 2014",
         "Total Cards": "165"
     },
     {
         "Set": "Journey into Nyx",
-        "Expansion Code": "JOU[115]",
-        "Pre-release Date": "April 26, 2014[116]",
-        "Release Date": "May 2, 2014[115]",
+        "Expansion Code": "JOU",
+        "Pre-release Date": "April 26, 2014",
+        "Release Date": "May 2, 2014",
         "Total Cards": "165"
     },
     {
         "Set": "Khans of Tarkir",
-        "Expansion Code": "KTK[117]",
-        "Pre-release Date": "September 20, 2014[117]",
-        "Release Date": "September 26, 2014[117]",
+        "Expansion Code": "KTK",
+        "Pre-release Date": "September 20, 2014",
+        "Release Date": "September 26, 2014",
         "Total Cards": "269"
     },
     {
         "Set": "Fate Reforged",
-        "Expansion Code": "FRF[119]",
-        "Pre-release Date": "January 17, 2015[119]",
-        "Release Date": "January 23, 2015[119]",
-        "Total Cards": "185[XXIX]"
+        "Expansion Code": "FRF",
+        "Pre-release Date": "January 17, 2015",
+        "Release Date": "January 23, 2015",
+        "Total Cards": "185"
     },
     {
         "Set": "Dragons of Tarkir",
-        "Expansion Code": "DTK[120]",
-        "Pre-release Date": "March 21, 2015[120]",
-        "Release Date": "March 27, 2015[120]",
+        "Expansion Code": "DTK",
+        "Pre-release Date": "March 21, 2015",
+        "Release Date": "March 27, 2015",
         "Total Cards": "264"
     },
     {
         "Set": "Battle for Zendikar",
-        "Expansion Code": "BFZ[121]",
-        "Pre-release Date": "September 26, 2015[121]",
-        "Release Date": "October 2, 2015[121]",
-        "Total Cards": "274[XXX]"
+        "Expansion Code": "BFZ",
+        "Pre-release Date": "September 26, 2015",
+        "Release Date": "October 2, 2015",
+        "Total Cards": "274"
     },
     {
         "Set": "Oath of the Gatewatch",
-        "Expansion Code": "OGW[123]",
-        "Pre-release Date": "January 16, 2016[123]",
-        "Release Date": "January 22, 2016[123]",
-        "Total Cards": "184[XXX]"
+        "Expansion Code": "OGW",
+        "Pre-release Date": "January 16, 2016",
+        "Release Date": "January 22, 2016",
+        "Total Cards": "184"
     },
     {
         "Set": "Shadows over Innistrad",
-        "Expansion Code": "SOI[125]",
-        "Pre-release Date": "April 2, 2016[125]",
-        "Release Date": "April 8, 2016[125]",
-        "Total Cards": "297[XXXI]"
+        "Expansion Code": "SOI",
+        "Pre-release Date": "April 2, 2016",
+        "Release Date": "April 8, 2016",
+        "Total Cards": "297"
     },
     {
         "Set": "Eldritch Moon",
-        "Expansion Code": "EMN[126]",
-        "Pre-release Date": "July 16, 2016[126]",
-        "Release Date": "July 22, 2016[126]",
-        "Total Cards": "205[XXXI]"
+        "Expansion Code": "EMN",
+        "Pre-release Date": "July 16, 2016",
+        "Release Date": "July 22, 2016",
+        "Total Cards": "205"
     },
     {
         "Set": "Kaladesh",
@@ -2560,7 +2593,7 @@
     },
     {
         "Set": "Rivals of Ixalan",
-        "Expansion Code": "RIX[131]",
+        "Expansion Code": "RIX",
         "Pre-release Date": "January 13, 2018",
         "Release Date": "January 19, 2018",
         "Total Cards": "196"
@@ -2587,8 +2620,8 @@
         "Total Cards": "259"
     },
     {
-        "Set": "War of the Spark[135]",
-        "Expansion Code": "WAR[136]",
+        "Set": "War of the Spark",
+        "Expansion Code": "WAR",
         "Pre-release Date": "April 27, 2019",
         "Release Date": "May 3, 2019",
         "Total Cards": "264"
@@ -2597,7 +2630,7 @@
         "Set": "Throne of Eldraine",
         "Expansion Code": "ELD",
         "Pre-release Date": "September 28, 2019",
-        "Release Date": "October 4, 2019[139]",
+        "Release Date": "October 4, 2019",
         "Total Cards": "269"
     },
     {
@@ -2630,7 +2663,7 @@
     },
     {
         "Set": "Strixhaven: School of Mages",
-        "Expansion Code": "STX[143]",
+        "Expansion Code": "STX",
         "Pre-release Date": "April 16, 2021",
         "Release Date": "April 23, 2021",
         "Total Cards": "275"
@@ -2672,9 +2705,9 @@
     },
     {
         "Set": "Dominaria United",
-        "Expansion Code": "DMU[150]",
-        "Pre-release Date": "September 2, 2022[151]",
-        "Release Date": "September 9, 2022[151]",
+        "Expansion Code": "DMU",
+        "Pre-release Date": "September 2, 2022",
+        "Release Date": "September 9, 2022",
         "Total Cards": "281"
     },
     {
@@ -2694,8 +2727,8 @@
     {
         "Set": "March of the Machine",
         "Expansion Code": "MOM",
-        "Pre-release Date": "April 14\u201320, 2023[153]",
-        "Release Date": "April 21, 2023[153]",
+        "Pre-release Date": "April 14\u201320, 2023",
+        "Release Date": "April 21, 2023",
         "Total Cards": "291"
     },
     {
@@ -2707,93 +2740,93 @@
     },
     {
         "Set": "Wilds of Eldraine",
-        "Expansion Code": "WOE[155]",
-        "Pre-release Date": "September 1\u20137, 2023[155]",
-        "Release Date": "September 8, 2023[155]",
+        "Expansion Code": "WOE",
+        "Pre-release Date": "September 1\u20137, 2023",
+        "Release Date": "September 8, 2023",
         "Total Cards": "381"
     },
     {
         "Set": "The Lost Caverns of Ixalan",
-        "Expansion Code": "LCI[156]",
-        "Pre-release Date": "November 10\u201316, 2023[157]",
-        "Release Date": "November 17, 2023[158]",
+        "Expansion Code": "LCI",
+        "Pre-release Date": "November 10\u201316, 2023",
+        "Release Date": "November 17, 2023",
         "Total Cards": "291"
     },
     {
         "Set": "Murders at Karlov Manor",
-        "Expansion Code": "MKM[159]",
-        "Pre-release Date": "February 2\u20138, 2024[161]",
-        "Release Date": "February 9, 2024[162]",
+        "Expansion Code": "MKM",
+        "Pre-release Date": "February 2\u20138, 2024",
+        "Release Date": "February 9, 2024",
         "Total Cards": "286"
     },
     {
         "Set": "Outlaws of Thunder Junction",
-        "Expansion Code": "OTJ[163]",
-        "Pre-release Date": "April 12, 2024[164]",
-        "Release Date": "April 19, 2024[165]",
+        "Expansion Code": "OTJ",
+        "Pre-release Date": "April 12, 2024",
+        "Release Date": "April 19, 2024",
         "Total Cards": "276"
     },
     {
         "Set": "Bloomburrow",
-        "Expansion Code": "BLB[166]",
-        "Pre-release Date": "July 26-August 1, 2024[167]",
-        "Release Date": "August 2, 2024[168]",
+        "Expansion Code": "BLB",
+        "Pre-release Date": "July 26-August 1, 2024",
+        "Release Date": "August 2, 2024",
         "Total Cards": "281"
     },
     {
         "Set": "Duskmourn: House of Horror",
-        "Expansion Code": "DSK[169]",
-        "Pre-release Date": "September 20\u201326, 2024[170]",
-        "Release Date": "September 27, 2024[170]",
+        "Expansion Code": "DSK",
+        "Pre-release Date": "September 20\u201326, 2024",
+        "Release Date": "September 27, 2024",
         "Total Cards": "286"
     },
     {
         "Set": "Aetherdrift",
         "Expansion Code": "DFT",
-        "Pre-release Date": "February 7, 2025[171]",
-        "Release Date": "February 14, 2025[172]",
+        "Pre-release Date": "February 7, 2025",
+        "Release Date": "February 14, 2025",
         "Total Cards": "276"
     },
     {
         "Set": "Tarkir: Dragonstorm",
         "Expansion Code": "TDM",
-        "Pre-release Date": "April 4, 2025[173]",
-        "Release Date": "April 11, 2025[174]",
+        "Pre-release Date": "April 4, 2025",
+        "Release Date": "April 11, 2025",
         "Total Cards": "286"
     },
     {
         "Set": "Final Fantasy",
         "Expansion Code": "FIN",
-        "Pre-release Date": "June 6, 2025[175]",
-        "Release Date": "June 13, 2025[176]",
+        "Pre-release Date": "June 6, 2025",
+        "Release Date": "June 13, 2025",
         "Total Cards": "309"
     },
     {
         "Set": "Edge of Eternities",
         "Expansion Code": "EOE",
         "Pre-release Date": "Q3 2025",
-        "Release Date": "August 1, 2025[177]",
+        "Release Date": "August 1, 2025",
         "Total Cards": "TBA"
     },
     {
         "Set": "Marvel's Spider-Man",
-        "Expansion Code": "SPM[178]",
+        "Expansion Code": "SPM",
         "Pre-release Date": "H2 2025",
-        "Release Date": "September 26, 2025[179]",
+        "Release Date": "September 26, 2025",
         "Total Cards": "TBA"
     },
     {
         "Set": "Avatar: The Last Airbender",
         "Expansion Code": "TLA",
         "Pre-release Date": "H2 2025",
-        "Release Date": "November 21, 2025[180]",
+        "Release Date": "November 21, 2025",
         "Total Cards": "TBA"
     },
     {
         "Set": "Lorwyn Eclipsed",
         "Expansion Code": "TBA",
         "Pre-release Date": "Q1 2026",
-        "Release Date": "January 23, 2026[181]",
+        "Release Date": "January 23, 2026",
         "Total Cards": "TBA"
     },
     {
@@ -2802,70 +2835,13 @@
         "Pre-release Date": "Q2 2026?",
         "Release Date": "Q2 2026?",
         "Total Cards": "TBA"
-    },
-    {
-        "Set": "Event set",
-        "Expansion Code": "TBA",
-        "Pre-release Date": "Q3 2026?",
-        "Release Date": "Q3 2026?",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "TBA",
-        "Expansion Code": "TBA",
-        "Pre-release Date": "Q1 2027?",
-        "Release Date": "Q1 2027?",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "TBA",
-        "Expansion Code": "TBA",
-        "Pre-release Date": "Q2 2027?",
-        "Release Date": "Q2 2027?",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "TBA",
-        "Expansion Code": "TBA",
-        "Pre-release Date": "Q3 2027?",
-        "Release Date": "Q3 2027?",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "TBA",
-        "Expansion Code": "TBA",
-        "Pre-release Date": "Q1 2028?",
-        "Release Date": "Q1 2028?",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "TBA",
-        "Expansion Code": "TBA",
-        "Pre-release Date": "Q2 2028?",
-        "Release Date": "Q2 2028?",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "Set",
-        "Expansion Code": "Expansioncode",
-        "Pre-release Date": "Pre-release date",
-        "Release Date": "Release date",
-        "Total Cards": "Size"
-    },
-    {
-        "Set": "TotalCards",
-        "Expansion Code": "Rare",
-        "Pre-release Date": "BasicLand",
-        "Release Date": "Other",
-        "Total Cards": null
     }
 ]
       `);
 
       window.bigSetThreshold = 210;
-      window.disallowedSetCodes = [];
+      window.disallowedSetCodes = "";
       function spinTheWheel() {
-        console.log("hi!");
 
         const grid = document.querySelector(".chosen-sets-grid");
         grid.innerHTML = "";
@@ -2895,7 +2871,6 @@
         }
 
         let coreSetChoice;
-
         for (const choice of smallSetChoices) {
             const c = document.createElement("div");
             c.classList.add("chosen-set");
@@ -2927,10 +2902,17 @@
   </head>
   <body>
     <main>
-      <div>
-        <p>>Hello world!</p>
+        <div class="flex">
+          <label for="bst">Big Set Threshold (210): </label>
+          <input id="bst" type="range" min="0" max="300" value="210" onchange="" />
+        </div>
+
+        <div class="flex">
+          <label for="bs">Blacklisted Set Codes (space separated list): </label>
+          <input type="text" />
+        </div>
+
         <button onclick="spinTheWheel()">Spin the wheel!</button>
-      </div>
       <div class="chosen-sets-grid">
 
       </div>
