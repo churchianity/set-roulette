@@ -81,6 +81,9 @@
         padding: 1rem;
         height: calc(min(20rem, 40vh) * 2);
       }
+      .header {
+          margin-bottom: 3rem;
+      }
       .chosen-set {
         background: #0E0909;
         border-radius: 1rem;
@@ -118,7 +121,32 @@
           grid-template-columns: 2fr 3fr;
           gap: 0.5rem;
           margin-bottom: 1rem;
+          padding: 2rem;
+          backdrop-filter: blur(4px);
       }
+      .action-row {
+          padding: 2rem;
+          backdrop-filter: blur(4px);
+      }
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  top: -100%;
+}
+
+@keyframes drop {
+  100% {
+    top: 110%;
+  }
     </style>
 <style>
 @font-face {
@@ -2918,34 +2946,73 @@
             appendSet(choice, "Big Set");
         }
 
+        if (document.getElementById("confetti-cb").checked) {
+            const w = document.querySelector(".wrapper");
+            if (w) document.body.removeChild(w);
+            function r(x) {
+                return Math.floor(Math.random() * x);
+            }
+
+            const colors = [
+                "orange", "red", "yellow", "pink", "magenta", "purple", "blue", "green", "lime", "salmon"
+            ];
+            const wrapper = document.createElement("div");
+            wrapper.style.width = "100%";
+            wrapper.classList.add("wrapper");
+            for (let i = 0; i < 50; i++) {
+                const c = document.createElement("div");
+                c.classList.add("confetti");
+                const w = r(10) + 5;
+                const l = r(100) + 10;
+                c.style.width = `${w}px`;
+                c.style.height = `${w*0.4}px`;
+                c.style.backgroundColor = colors[r(colors.length)];
+                c.style.left = `${l}%`;
+                c.style.transform = `rotate(${Math.random() * 360}deg)`;
+                c.style.animationName = `drop`;
+                c.style.animationDuration = `${10 * Math.random() + 5}s`
+                //c.style.animationDelay = `${5 * Math.random()}s`;
+                c.style.animationIterationCount = `${5}`;
+                wrapper.appendChild(c);
+            }
+            document.body.appendChild(wrapper);
+        }
       }
     </script>
   </head>
   <body>
     <main>
         <div class="flex-col">
+          <h1 class="header">Set Roulette Generator</h1>
 
           <div class="form-body">
             <label id="bst-label" for="bst">Big Set Threshold (210): </label>
             <input id="bst" type="range" min="0" max="300" value="210" onchange="" />
 
+            <div style="display: none;">
             <label for="opbd">Only Pick Sets After: </label>
             <div class="flex">
               <input id="opbd" type="date" />
               <span>OR</span>
               <input id="opbt" type="text" placeholder="set code, lowercase" />
             </div>
+            </div>
 
             <label for="bsc">Blacklisted Set Codes: </label>
             <input id="bsc" type="text" placeholder="set codes, space-separated" onchange="" />
+
           </div>
 
-          <button onclick="spinTheWheel()">Spin the wheel!</button>
+          <div class="flex action-row">
+            <div class="flex">
+              <label for="confetti-cb">Fanfare?</label>
+              <input id="confetti-cb" type="checkbox" />
+            </div>
 
+            <button onclick="spinTheWheel()">Spin the wheel!</button>
+          </div>
         </div>
-      <div class="chosen-sets-grid">
-
-      </div>
+      <div class="chosen-sets-grid"></div>
     </main>
     <noscript>This site requires Javascript, sorry :(</noscript>
   </body>
