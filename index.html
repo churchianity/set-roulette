@@ -51,6 +51,21 @@
       button {
         width: min(40rem, 30vw);
         height: 3rem;
+
+        color: #000;
+        cursor: pointer;
+        border: 3px solid;
+        padding: 0.25em 0.5em;
+        box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+        position: relative;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+      button:active {
+        box-shadow: 0px 0px 0px 0px;
+        top: 5px;
+        left: 5px;
       }
       .total-cards, .release-date {
         color: #FAF9F6;
@@ -97,6 +112,12 @@
       }
       .set-symbol {
         font-size: 2rem;
+      }
+      .form-body {
+          display: grid;
+          grid-template-columns: 2fr 3fr;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
       }
     </style>
 <style>
@@ -1912,157 +1933,136 @@
 [
   {
     "Set": "Limited Edition Alpha",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "295",
-    "Release Date": "74",
-    "Total Cards": "95"
+    "Expansion Code": "LEA",
+    "Release Date": "August 5, 1993",
+    "Total Cards": "295"
   },
   {
     "Set": "Limited Edition Beta",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "302",
-    "Release Date": "75",
-    "Total Cards": "95"
+    "Expansion Code": "LEB",
+    "Release Date": "October, 1993",
+    "Total Cards": "302"
   },
   {
     "Set": "Unlimited Edition",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "302",
-    "Release Date": "75",
-    "Total Cards": "95"
+    "Expansion Code": "2ED",
+    "Release Date": "December 1, 1993",
+    "Total Cards": "302"
   },
   {
     "Set": "Revised Edition",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "306",
-    "Release Date": "75",
-    "Total Cards": "95"
+    "Expansion Code": "3ED",
+    "Release Date": "April 11, 1994",
+    "Total Cards": "306"
   },
   {
     "Set": "Fourth Edition",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "378",
-    "Release Date": "121",
-    "Total Cards": "121"
+    "Expansion Code": "4ED",
+    "Release Date": "April 1995",
+    "Total Cards": "378"
   },
   {
     "Set": "Fifth Edition",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "449",
-    "Release Date": "165",
-    "Total Cards": "132"
+    "Expansion Code": "5ED",
+    "Release Date": "March 24, 1997",
+    "Total Cards": "449"
   },
   {
     "Set": "Classic Sixth Edition",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "350",
-    "Release Date": "110",
-    "Total Cards": "110"
+    "Expansion Code": "6ED",
+    "Release Date": "April 28, 1999",
+    "Total Cards": "350"
   },
   {
     "Set": "Seventh Edition",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "350",
-    "Release Date": "110",
-    "Total Cards": "110"
+    "Expansion Code": "7ED",
+    "Release Date": "April 11, 2001",
+    "Total Cards": "350"
   },
   {
     "Set": "Eighth Edition",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "357",
-    "Release Date": "110",
-    "Total Cards": "110"
+    "Expansion Code": "8ED",
+    "Release Date": "July 28, 2003",
+    "Total Cards": "357"
   },
   {
     "Set": "Ninth Edition",
-    "Expansion Code": "\u2014",
+    "Expansion Code": "9ED",
     "Pre-release Date": "359",
-    "Release Date": "110",
-    "Total Cards": "110"
+    "Release Date": "July 29, 2005",
+    "Total Cards": "359"
   },
   {
     "Set": "Tenth Edition",
-    "Expansion Code": "\u2014",
-    "Pre-release Date": "383",
-    "Release Date": "121",
-    "Total Cards": "121"
+    "Expansion Code": "10E",
+    "Release Date": "July 13, 2007",
+    "Total Cards": "383"
   },
   {
     "Set": "Magic 2010",
-    "Expansion Code": "July 11, 2009",
-    "Pre-release Date": "249",
-    "Release Date": "101",
-    "Total Cards": "60"
+    "Expansion Code": "M10",
+    "Release Date": "July 17, 2009",
+    "Total Cards": "249"
   },
   {
     "Set": "Magic 2011",
-    "Expansion Code": "July 10, 2010",
-    "Pre-release Date": "249",
-    "Release Date": "101",
-    "Total Cards": "60"
+    "Expansion Code": "M11",
+    "Release Date": "July 16, 2010",
+    "Total Cards": "249"
   },
   {
     "Set": "Magic 2012",
-    "Expansion Code": "July 9, 2011",
-    "Pre-release Date": "249",
-    "Release Date": "101",
-    "Total Cards": "60"
+    "Expansion Code": "M12",
+    "Release Date": "July 15, 2011",
+    "Total Cards": "249"
   },
   {
     "Set": "Magic 2013",
-    "Expansion Code": "July 7, 2012",
-    "Pre-release Date": "249",
-    "Release Date": "101",
-    "Total Cards": "60"
+    "Expansion Code": "M13",
+    "Release Date": "July 13, 2012",
+    "Total Cards": "249"
   },
   {
     "Set": "Magic 2014",
-    "Expansion Code": "July 13, 2013",
-    "Pre-release Date": "249",
-    "Release Date": "101",
-    "Total Cards": "60"
+    "Expansion Code": "M14",
+    "Release Date": "July 19, 2013",
+    "Total Cards": "249"
   },
   {
     "Set": "Magic 2015",
-    "Expansion Code": "July 12, 2014",
-    "Pre-release Date": "284",
-    "Release Date": "101",
-    "Total Cards": "80"
+    "Expansion Code": "M15",
+    "Release Date": "July 18, 2014",
+    "Total Cards": "284"
   },
   {
     "Set": "Magic Origins",
-    "Expansion Code": "July 11, 2015",
-    "Pre-release Date": "288",
-    "Release Date": "101",
-    "Total Cards": "80"
+    "Expansion Code": "ORI",
+    "Release Date": "July 17 2015",
+    "Total Cards": "288"
   },
   {
     "Set": "Core Set 2019",
-    "Expansion Code": "July 7, 2018",
-    "Pre-release Date": "280",
-    "Release Date": "111",
-    "Total Cards": "80"
+    "Expansion Code": "M19",
+    "Release Date": "July 13 2018",
+    "Total Cards": "280"
   },
   {
     "Set": "Core Set 2020",
-    "Expansion Code": "July 5, 2019",
-    "Pre-release Date": "321",
-    "Release Date": "152",
-    "Total Cards": "86"
+    "Expansion Code": "M20",
+    "Release Date": "July 12, 2019",
+    "Total Cards": "321"
   },
   {
     "Set": "Core Set 2021",
-    "Expansion Code": "June 26, 2020",
-    "Pre-release Date": "274",
-    "Release Date": "111",
-    "Total Cards": "80"
+    "Expansion Code": "M21",
+    "Release Date": "July 3, 2020",
+    "Total Cards": "274"
   },
   {
     "Set": "Magic: The Gathering Foundations",
-    "Expansion Code": "",
-    "Pre-release Date": "292",
-    "Release Date": "91",
-    "Total Cards": "101"
+    "Expansion Code": "FDN",
+    "Release Date": "November 15, 2024",
+    "Total Cards": "292"
   }
 ]
       `);
@@ -2343,7 +2343,7 @@
     },
     {
         "Set": "Time Spiral",
-        "Expansion Code": "TSP/TSB",
+        "Expansion Code": "TSP",
         "Pre-release Date": "September 23, 2006",
         "Release Date": "October 6, 2006",
         "Total Cards": "422"
@@ -2809,47 +2809,38 @@
         "Pre-release Date": "June 6, 2025",
         "Release Date": "June 13, 2025",
         "Total Cards": "309"
-    },
-    {
-        "Set": "Edge of Eternities",
-        "Expansion Code": "EOE",
-        "Pre-release Date": "Q3 2025",
-        "Release Date": "August 1, 2025",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "Marvel's Spider-Man",
-        "Expansion Code": "SPM",
-        "Pre-release Date": "H2 2025",
-        "Release Date": "September 26, 2025",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "Avatar: The Last Airbender",
-        "Expansion Code": "TLA",
-        "Pre-release Date": "H2 2025",
-        "Release Date": "November 21, 2025",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "Lorwyn Eclipsed",
-        "Expansion Code": "TBA",
-        "Pre-release Date": "Q1 2026",
-        "Release Date": "January 23, 2026",
-        "Total Cards": "TBA"
-    },
-    {
-        "Set": "Secrets of Strixhaven",
-        "Expansion Code": "TBA",
-        "Pre-release Date": "Q2 2026?",
-        "Release Date": "Q2 2026?",
-        "Total Cards": "TBA"
     }
 ]
       `);
 
       window.bigSetThreshold = 210;
+      window.onlyPickBefore = "";
       window.disallowedSetCodes = "";
+
+      document.addEventListener("DOMContentLoaded", () => {
+          const bst = document.getElementById("bst");
+          bst.addEventListener("input", e => {
+              window.bigSetThreshold = e.target.value;
+              document.getElementById("bst-label").innerText = `Big Set Threshold (${window.bigSetThreshold}): `;
+          });
+
+          const bsc = document.getElementById("bsc");
+          bsc.addEventListener("input", e => {
+              window.disallowedSetCodes = e.target.value.toLowerCase().split(/\s/);
+              console.log("CHANGE bsc", window.disallowedSetCodes);
+          });
+
+          const opbd = document.getElementById("opbd");
+          opbd.addEventListener("change", e => {
+              console.log("CHANGE opbd", e);
+          });
+          const opbt = document.getElementById("opbt");
+          opbt.addEventListener("input", e => {
+              console.log("CHANGE obpt", e);
+          });
+      });
+
+
       function spinTheWheel() {
 
         const grid = document.querySelector(".chosen-sets-grid");
@@ -2932,17 +2923,26 @@
   </head>
   <body>
     <main>
-        <div class="flex">
-          <label for="bst">Big Set Threshold (210): </label>
-          <input id="bst" type="range" min="0" max="300" value="210" onchange="" />
-        </div>
+        <div class="flex-col">
 
-        <div class="flex">
-          <label for="bs">Blacklisted Set Codes (space separated list): </label>
-          <input type="text" />
-        </div>
+          <div class="form-body">
+            <label id="bst-label" for="bst">Big Set Threshold (210): </label>
+            <input id="bst" type="range" min="0" max="300" value="210" onchange="" />
 
-        <button onclick="spinTheWheel()">Spin the wheel!</button>
+            <label for="opbd">Only Pick Sets After: </label>
+            <div class="flex">
+              <input id="opbd" type="date" />
+              <span>OR</span>
+              <input id="opbt" type="text" placeholder="set code, lowercase" />
+            </div>
+
+            <label for="bsc">Blacklisted Set Codes: </label>
+            <input id="bsc" type="text" placeholder="set codes, space-separated" onchange="" />
+          </div>
+
+          <button onclick="spinTheWheel()">Spin the wheel!</button>
+
+        </div>
       <div class="chosen-sets-grid">
 
       </div>
