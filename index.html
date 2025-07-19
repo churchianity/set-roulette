@@ -33,7 +33,9 @@
         --s: 6px; /* control the size*/
         --c1: #3b3239;
         --c2: #0E0909;
-        
+        --box-shadow-rgb: 0, 0, 0;
+        --box-shadow: 0 6px 16px 0 rgba(var(--box-shadow-rgb), 0.08), 0 3px 6px -4px rgba(var(--box-shadow-rgb), 0.12), 0 9px 28px 8px rgba(var(--box-shadow-rgb), 0.05);
+  
         --g:#0000 66%,var(--c1) 68% 98%,#0000;
         background:
             radial-gradient(30% 30% at 0%   30%,var(--g))
@@ -49,7 +51,13 @@
       button {
         width: min(40rem, 30vw);
         height: 3rem;
-
+      }
+      .total-cards, .release-date {
+        color: #FAF9F6;
+        font-size: 1rem;
+      }
+      .set-name {
+          text-align: center;
       }
       .chosen-sets-grid {
         display: grid;
@@ -67,10 +75,11 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        border: 1px solid orange;
+        border: 1px solid #b89149;
         color: orange;
         font-weight: bold;
         gap: 0.5rem;
+        box-shadow: var(--box-shadow);
       }
       .flex {
         display: flex;
@@ -2850,17 +2859,34 @@
         const smallSetOptions = [];
         const bigSetOptions = [];
 
-        for (const set of sets) {
+        for (const set of window.sets) {
             if (+set["Total Cards"] >= bigSetThreshold) {
-                bigSetOptions.push(set);
+                if (!window.disallowedSetCodes.includes(set["Expansion Code"].toLowerCase())) bigSetOptions.push(set);
             } else {
-                smallSetOptions.push(set);
+                if (!window.disallowedSetCodes.includes(set["Expansion Code"].toLowerCase())) smallSetOptions.push(set);
             }
+        }
+        for (const set of window.coreSets) {
+            if (!window.disallowedSetCodes.includes(set["Expansion Code"].toLowerCase())) coreSetOptions.push(set);
+        }
+
+        if (coreSetOptions.length < 1) {
+           alert("Not enough core set options with the configured settings! Tweak settings and try spinning again.");
+           return;
+        }
+        if (smallSetOptions.length < 3) {
+           alert("Not enough small set options with the configured settings! Tweak settings and try spinning again.");
+           return;
+        }
+        if (bigSetOptions.length < 2) {
+           alert("Not enough big set options with the configured settings! Tweak settings and try spinning again.");
+           return;
         }
 
         const smallSetChoices = [];
-        while (smallSetChoices.length < 3) {
+        while (smallSetChoices.length < 2) {
             const choice = smallSetOptions[Math.floor(Math.random() * smallSetOptions.length)];
+            if (window.disallowedSetCodes.includes(choice["Expansion Code"].toLowerCase())) continue;
             if (!smallSetChoices.includes(choice)) smallSetChoices.push(choice);
         }
 
@@ -2870,33 +2896,37 @@
             if (!bigSetChoices.includes(choice)) bigSetChoices.push(choice);
         }
 
-        let coreSetChoice;
-        for (const choice of smallSetChoices) {
+        const coreSetChoice = coreSetOptions[Math.floor(Math.random() * coreSetOptions.length)];
+
+        function appendSet(choice, label) {
             const c = document.createElement("div");
             c.classList.add("chosen-set");
             c.innerHTML = `
-              <div class="flex">
-                <i class="set-symbol ss ss-${choice['Expansion Code'].toLowerCase()}"></i>
-                <h3>${choice.Set}</h3>
+              <span class="set-label">${label}</span>
+
+              <div class="flex-col">
+                <div class="flex">
+                  <i class="set-symbol ss ss-${choice['Expansion Code'].toLowerCase()}"></i>
+                  <h3 class="set-name">${choice.Set}</h3>
+                </div>
+                <span class="expansion-code">${choice["Expansion Code"]}</span>
               </div>
-              <p>${choice["Expansion Code"]}</p>
-              <p>${choice["Total Cards"]} - ${choice["Release Date"]}</p>
+
+              <div class="flex">
+                <span class="total-cards">${choice["Total Cards"]} Cards</span>
+                <span class="release-date">Released: ${choice["Release Date"]}</span>
+              </div>
             `;
            grid.appendChild(c);
         }
+
+        appendSet(smallSetChoices[0], "Small Set");
+        appendSet(coreSetChoice, "Core Set");
+        appendSet(smallSetChoices[1], "Small Set");
         for (const choice of bigSetChoices) {
-            const c = document.createElement("div");
-            c.classList.add("chosen-set");
-            c.innerHTML = `
-              <div class="flex">
-                <i class="set-symbol ss ss-${choice['Expansion Code'].toLowerCase()}"></i>
-                <h3>${choice.Set}</h3>
-              </div>
-              <p>${choice["Expansion Code"]}</p>
-              <p>${choice["Total Cards"]} - ${choice["Release Date"]}</p>
-            `;
-           grid.appendChild(c);
+            appendSet(choice, "Big Set");
         }
+
       }
     </script>
   </head>
