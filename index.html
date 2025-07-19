@@ -22,15 +22,2538 @@
         color: white;
         font: Luminari;
         font-size: 16px;
+
+        min-height: 100vh;
+        width: 100%;
+        height: 100%;
       }
     </style>
     <script>
-      
+      window.sets = JSON.parse(`[
+        {
+          "Released": "2021-08",
+          "Set": "2021 Arena Starter Kit",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-06",
+          "Set": "2022 Starter Kit",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2017-01",
+          "Set": "Aether Revolt",
+          "Code": "AER",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2025-02",
+          "Set": "Aetherdrift",
+          "Code": "DFT",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-02",
+          "Set": "Aetherdrift/Commander decks",
+          "Code": "DRC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2009-04",
+          "Set": "Alara Reborn",
+          "Code": "ARB",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2022-07",
+          "Set": "Alchemy Horizons: Baldur's Gate",
+          "Code": "HBG",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2024-08",
+          "Set": "Alchemy: Bloomburrow",
+          "Code": "Y25",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2022-10",
+          "Set": "Alchemy: Dominaria",
+          "Code": "Y23",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2024-10",
+          "Set": "Alchemy: Duskmourn",
+          "Code": "Y25",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2023-10",
+          "Set": "Alchemy: Eldraine",
+          "Code": "Y24",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2021-12",
+          "Set": "Alchemy: Innistrad",
+          "Code": "Y22",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2023-12",
+          "Set": "Alchemy: Ixalan",
+          "Code": "Y24",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2022-03",
+          "Set": "Alchemy: Kamigawa",
+          "Code": "Y22",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2023-12",
+          "Set": "Alchemy: Karlov Manor",
+          "Code": "Y24",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2022-06",
+          "Set": "Alchemy: New Capenna",
+          "Code": "Y22",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2023-02",
+          "Set": "Alchemy: Phyrexia",
+          "Code": "Y23",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2022-12",
+          "Set": "Alchemy: The Brothers' War",
+          "Code": "Y23",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2024-05",
+          "Set": "Alchemy: Thunder Junction",
+          "Code": "Y24",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "1996-06",
+          "Set": "Alliances",
+          "Code": "ALL (AL)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1993-08",
+          "Set": "Alpha (Limited Edition)",
+          "Code": "LEA (1E)",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2017-04",
+          "Set": "Amonkhet",
+          "Code": "AKH",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2017-042017-07",
+          "Set": "Amonkhet Invocations",
+          "Code": "MP2",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2020-08",
+          "Set": "Amonkhet Remastered",
+          "Code": "AKR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "1998-11",
+          "Set": "Anthologies",
+          "Code": "ATH",
+          "Type": "Box set"
+        },
+        {
+          "Released": "1994-03",
+          "Set": "Antiquities",
+          "Code": "ATQ (AQ)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2001-05",
+          "Set": "Apocalypse",
+          "Code": "APC (AP)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1993-12",
+          "Set": "Arabian Nights",
+          "Code": "ARN (AN)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2010-06",
+          "Set": "Archenemy",
+          "Code": "ARC",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2017-06",
+          "Set": "Archenemy: Nicol Bolas",
+          "Code": "E01",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2020-08",
+          "Set": "Arena Base Set",
+          "Code": "ANB",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2024-07",
+          "Set": "Assassin's Creed",
+          "Code": "ACR",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2012-05",
+          "Set": "Avacyn Restored",
+          "Code": "AVR",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2015-10",
+          "Set": "Battle for Zendikar",
+          "Code": "BFZ",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1999-11",
+          "Set": "Battle Royale",
+          "Code": "BRB",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2018-06",
+          "Set": "Battlebond",
+          "Code": "BBD",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2000-10",
+          "Set": "Beatdown",
+          "Code": "BTD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "1993-10",
+          "Set": "Beta (Limited Edition)",
+          "Code": "LEB (2E)",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2005-02",
+          "Set": "Betrayers of Kamigawa",
+          "Code": "BOK",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-08",
+          "Set": "Bloomburrow",
+          "Code": "BLB",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-08",
+          "Set": "Bloomburrow/Commander decks",
+          "Code": "BLC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2014-02",
+          "Set": "Born of the Gods",
+          "Code": "BNG",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-04",
+          "Set": "Breaking News",
+          "Code": "OTP",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2018-04",
+          "Set": "Challenger Decks",
+          "Code": "Q01",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2019-04",
+          "Set": "Challenger Decks 2019",
+          "Code": "Q02",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2019-11",
+          "Set": "Challenger Decks 2019 Japan",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-03",
+          "Set": "Challenger Decks 2020",
+          "Code": "Q03",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-03",
+          "Set": "Challenger Decks 2021",
+          "Code": "Q05",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-04",
+          "Set": "Challenger Decks 2022",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2004-10",
+          "Set": "Champions of Kamigawa",
+          "Code": "CHK",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1995-07",
+          "Set": "Chronicles",
+          "Code": "CHR (CH)",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2006-07",
+          "Set": "Coldsnap",
+          "Code": "CSP",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2011-06",
+          "Set": "Commander",
+          "Code": "CMD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2013-11",
+          "Set": "Commander 2013",
+          "Code": "C13",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2014-11",
+          "Set": "Commander 2014",
+          "Code": "C14",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2015-11",
+          "Set": "Commander 2015",
+          "Code": "C15",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2016-11",
+          "Set": "Commander 2016",
+          "Code": "C16",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2017-08",
+          "Set": "Commander 2017",
+          "Code": "C17",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2018-08",
+          "Set": "Commander 2018",
+          "Code": "C18",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2019-08",
+          "Set": "Commander 2019",
+          "Code": "C19",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-04",
+          "Set": "Commander 2020",
+          "Code": "C20",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-04",
+          "Set": "Commander 2021",
+          "Code": "C21",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2017-06",
+          "Set": "Commander Anthology",
+          "Code": "CMA",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2018-06",
+          "Set": "Commander Anthology Volume II",
+          "Code": "CM2",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-01",
+          "Set": "Commander Collection: Black",
+          "Code": "CC2",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-12",
+          "Set": "Commander Collection: Green",
+          "Code": "CC1",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-11",
+          "Set": "Commander Legends",
+          "Code": "CMR",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2020-11",
+          "Set": "Commander Legends Commander Decks",
+          "Code": "CMR",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-06",
+          "Set": "Commander Legends: Battle for Baldur's Gate",
+          "Code": "CLB",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2022-07",
+          "Set": "Commander Legends: Battle for Baldur's Gate Commander Decks",
+          "Code": "CLB",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-08",
+          "Set": "Commander Masters",
+          "Code": "CMM",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2023-08",
+          "Set": "Commander Masters/Commander decks",
+          "Code": "CMM",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2009-08",
+          "Set": "Commander Theme Decks",
+          "Code": "TD0",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2012-11",
+          "Set": "Commander's Arsenal",
+          "Code": "CM1",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2009-02",
+          "Set": "Conflux",
+          "Code": "CON",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2014-06",
+          "Set": "Conspiracy",
+          "Code": "CNS",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2016-08",
+          "Set": "Conspiracy: Take the Crown",
+          "Code": "CN2",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2018-07",
+          "Set": "Core Set 2019",
+          "Code": "M19",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2019-07",
+          "Set": "Core Set 2020",
+          "Code": "M20",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2020-07",
+          "Set": "Core Set 2021",
+          "Code": "M21",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2012-02",
+          "Set": "Dark Ascension",
+          "Code": "DKA",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2004-02",
+          "Set": "Darksteel",
+          "Code": "DST",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2010-05",
+          "Set": "Deck Builder's Toolkit",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2011-03",
+          "Set": "Deck Builder's Toolkit 2011",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2001-12",
+          "Set": "Deckmasters 2001",
+          "Code": "DKM",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2006-05",
+          "Set": "Dissension",
+          "Code": "DIS",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-10",
+          "Set": "Doctor Who Commander Decks",
+          "Code": "WHO",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2018-04",
+          "Set": "Dominaria",
+          "Code": "DOM",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-01",
+          "Set": "Dominaria Remastered",
+          "Code": "DMR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2022-09",
+          "Set": "Dominaria United",
+          "Code": "DMU",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2022-09",
+          "Set": "Dominaria United Commander Decks",
+          "Code": "DMC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-08",
+          "Set": "Double Masters",
+          "Code": "2XM",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2022-07",
+          "Set": "Double Masters 2022",
+          "Code": "2X2",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2013-05",
+          "Set": "Dragon's Maze",
+          "Code": "DGM",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2015-03",
+          "Set": "Dragons of Tarkir",
+          "Code": "DTK",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2014-12",
+          "Set": "Duel Decks Anthology",
+          "Code": "DD3",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2011-09",
+          "Set": "Duel Decks: Ajani vs. Nicol Bolas",
+          "Code": "DDH",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2016-02",
+          "Set": "Duel Decks: Blessed vs. Cursed",
+          "Code": "DDQ",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2009-04",
+          "Set": "Duel Decks: Divine vs. Demonic",
+          "Code": "DDC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2015-02",
+          "Set": "Duel Decks: Elspeth vs. Kiora",
+          "Code": "DDO",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2010-09",
+          "Set": "Duel Decks: Elspeth vs. Tezzeret",
+          "Code": "DDF",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2007-11",
+          "Set": "Duel Decks: Elves vs. Goblins",
+          "Code": "EVG",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2018-04",
+          "Set": "Duel Decks: Elves vs. Inventors",
+          "Code": "DDU",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2009-10",
+          "Set": "Duel Decks: Garruk vs. Liliana",
+          "Code": "DDD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2013-09",
+          "Set": "Duel Decks: Heroes vs. Monsters",
+          "Code": "DDL",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2012-09",
+          "Set": "Duel Decks: Izzet vs. Golgari",
+          "Code": "DDJ",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2008-11",
+          "Set": "Duel Decks: Jace vs. Chandra",
+          "Code": "DD2",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2014-03",
+          "Set": "Duel Decks: Jace vs. Vraska",
+          "Code": "DDM",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2011-04",
+          "Set": "Duel Decks: Knights vs. Dragons",
+          "Code": "DDG",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2017-11",
+          "Set": "Duel Decks: Merfolk vs. Goblins",
+          "Code": "DDT",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2017-03",
+          "Set": "Duel Decks: Mind vs. Might",
+          "Code": "DDS",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2013-01",
+          "Set": "Duel Decks: Mirrodin Pure vs. New Phyrexia",
+          "Code": "TD2",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2016-09",
+          "Set": "Duel Decks: Nissa vs. Ob Nixilis",
+          "Code": "DDR",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2010-03",
+          "Set": "Duel Decks: Phyrexia vs. The Coalition",
+          "Code": "DDE",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2013-03",
+          "Set": "Duel Decks: Sorin vs. Tibalt",
+          "Code": "DDK",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2014-10",
+          "Set": "Duel Decks: Speed vs. Cunning",
+          "Code": "DDN",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2012-03",
+          "Set": "Duel Decks: Venser vs. Koth",
+          "Code": "DDI",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2015-08",
+          "Set": "Duel Decks: Zendikar vs. Eldrazi",
+          "Code": "DDP",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2010-06",
+          "Set": "Duels of the Planeswalkers",
+          "Code": "DPA",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-07",
+          "Set": "Dungeons & Dragons: Adventures in the Forgotten Realms",
+          "Code": "AFR",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2021-07",
+          "Set": "Dungeons & Dragons: Adventures in the Forgotten Realms Commander Decks",
+          "Code": "AFC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-09",
+          "Set": "Duskmourn: House of Horror",
+          "Code": "DSK",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-09",
+          "Set": "Duskmourn: House of Horror/Commander decks",
+          "Code": "DSC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2025-08",
+          "Set": "Edge of Eternities",
+          "Code": "EOE",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2003-07",
+          "Set": "Eighth Edition",
+          "Code": "8ED",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2016-07",
+          "Set": "Eldritch Moon",
+          "Code": "EMN",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-09",
+          "Set": "Enchanting Tales",
+          "Code": "WOT",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2016-06",
+          "Set": "Eternal Masters",
+          "Code": "EMA",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2008-06",
+          "Set": "Eventide",
+          "Code": "EVE",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1998-06",
+          "Set": "Exodus",
+          "Code": "EXO (EX)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2017-11",
+          "Set": "Explorers of Ixalan",
+          "Code": "E02",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "1994-11",
+          "Set": "Fallen Empires",
+          "Code": "FEM (FE)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-03",
+          "Set": "Fallout",
+          "Code": "PIP",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2015-01",
+          "Set": "Fate Reforged",
+          "Code": "FRF",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2004-06",
+          "Set": "Fifth Dawn",
+          "Code": "5DN",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1997-03",
+          "Set": "Fifth Edition",
+          "Code": "5ED (5E)",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2025-06",
+          "Set": "Final Fantasy",
+          "Code": "FIN",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2024-11",
+          "Set": "Foundations Jumpstart",
+          "Code": "J25",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "1995-05",
+          "Set": "Fourth Edition",
+          "Code": "4ED (4E)",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2015-08",
+          "Set": "From the Vault: Angels",
+          "Code": "V15",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2014-08",
+          "Set": "From the Vault: Annihilation",
+          "Code": "V14",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2008-08",
+          "Set": "From the Vault: Dragons",
+          "Code": "DRB",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2009-08",
+          "Set": "From the Vault: Exiled",
+          "Code": "V09",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2011-08",
+          "Set": "From the Vault: Legends",
+          "Code": "V11",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2016-08",
+          "Set": "From the Vault: Lore",
+          "Code": "V16",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2012-08",
+          "Set": "From the Vault: Realms",
+          "Code": "V12",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2010-08",
+          "Set": "From the Vault: Relics",
+          "Code": "V10",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2017-11",
+          "Set": "From the Vault: Transform",
+          "Code": "V17",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2013-08",
+          "Set": "From the Vault: Twenty",
+          "Code": "V13",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2007-05",
+          "Set": "Future Sight",
+          "Code": "FUT",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2018-11",
+          "Set": "Game Night",
+          "Code": "GNT",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2019-11",
+          "Set": "Game Night 2019",
+          "Code": "GN2",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-10",
+          "Set": "Game Night Free-for-All",
+          "Code": "GN3",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2013-02",
+          "Set": "Gatecrash",
+          "Code": "GTC",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2018-06",
+          "Set": "Global Series: Jiang Yanggu & Mu Yanling",
+          "Code": "GS1",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2006-02",
+          "Set": "Guildpact",
+          "Code": "GPT",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2018-10",
+          "Set": "Guilds of Ravnica",
+          "Code": "GRN",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2018-11",
+          "Set": "Guilds of Ravnica Guild Kits",
+          "Code": "GK1",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2018-10",
+          "Set": "Guilds of Ravnica Mythic Edition",
+          "Code": "MED",
+          "Type": "Special edition"
+        },
+        {
+          "Released": "1995-10",
+          "Set": "Homelands",
+          "Code": "HML (HM)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2017-07",
+          "Set": "Hour of Devastation",
+          "Code": "HOU",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1995-06",
+          "Set": "Ice Age",
+          "Code": "ICE (IA)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2017-11",
+          "Set": "Iconic Masters",
+          "Code": "IMA",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2020-04",
+          "Set": "Ikoria: Lair of Behemoths",
+          "Code": "IKO",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2011-09",
+          "Set": "Innistrad",
+          "Code": "ISD",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2025-01",
+          "Set": "Innistrad Remastered",
+          "Code": "INR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2021-11",
+          "Set": "Innistrad: Crimson Vow",
+          "Code": "VOW",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2021-11",
+          "Set": "Innistrad: Crimson Vow Commander Decks",
+          "Code": "VOC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-01",
+          "Set": "Innistrad: Double Feature",
+          "Code": "DBL",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2021-09",
+          "Set": "Innistrad: Midnight Hunt",
+          "Code": "MID",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2021-09",
+          "Set": "Innistrad: Midnight Hunt Commander Decks",
+          "Code": "MIC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2000-09",
+          "Set": "Invasion",
+          "Code": "INV (IN)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2017-09",
+          "Set": "Ixalan",
+          "Code": "XLN",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2014-05",
+          "Set": "Journey into Nyx",
+          "Code": "JOU",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2002-05",
+          "Set": "Judgment",
+          "Code": "JUD",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2020-07",
+          "Set": "Jumpstart",
+          "Code": "JMP",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2022-12",
+          "Set": "Jumpstart 2022",
+          "Code": "J22",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2021-08",
+          "Set": "Jumpstart: Historic Horizons",
+          "Code": "J21",
+          "Type": "Digital set"
+        },
+        {
+          "Released": "2023-11",
+          "Set": "Jurassic World Collection",
+          "Code": "REX",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2016-09",
+          "Set": "Kaladesh",
+          "Code": "KLD",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2016-092017-01",
+          "Set": "Kaladesh Inventions",
+          "Code": "MPS",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2020-11",
+          "Set": "Kaladesh Remastered",
+          "Code": "KLR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2021-02",
+          "Set": "Kaldheim",
+          "Code": "KHM",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2021-02",
+          "Set": "Kaldheim Commander Decks",
+          "Code": "KHC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-02",
+          "Set": "Kamigawa: Neon Dynasty",
+          "Code": "NEO",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2022-02",
+          "Set": "Kamigawa: Neon Dynasty Commander Decks",
+          "Code": "NEC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2014-10",
+          "Set": "Khans of Tarkir",
+          "Code": "KTK",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2015-11",
+          "Set": "Legendary Cube",
+          "Code": "PZ1",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "1994-06",
+          "Set": "Legends",
+          "Code": "LEG (LE)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2003-01",
+          "Set": "Legions",
+          "Code": "LGN",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2007-10",
+          "Set": "Lorwyn",
+          "Code": "LRW",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2009-07",
+          "Set": "Magic 2010",
+          "Code": "M10",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2010-07",
+          "Set": "Magic 2011",
+          "Code": "M11",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2011-07",
+          "Set": "Magic 2012",
+          "Code": "M12",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2012-07",
+          "Set": "Magic 2013",
+          "Code": "M13",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2013-07",
+          "Set": "Magic 2014",
+          "Code": "M14",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2014-07",
+          "Set": "Magic 2015",
+          "Code": "M15",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2010-11",
+          "Set": "Magic Online Deck Series",
+          "Code": "TD0",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2015-07",
+          "Set": "Magic Origins",
+          "Code": "ORI",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2024-11",
+          "Set": "Magic: The Gathering Foundations",
+          "Code": "FDN",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2024-11",
+          "Set": "Magic: The Gathering Foundations Starter CollectionCommander cards",
+          "Code": "FDC",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2023-04",
+          "Set": "March of the Machine",
+          "Code": "MOM",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-05",
+          "Set": "March of the Machine: The Aftermath",
+          "Code": "MAT",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2023-04",
+          "Set": "March of the Machine/Commander decks",
+          "Code": "MOC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2025-Q4",
+          "Set": "Marvel's Spider-Man",
+          "Code": "SPM",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2018-03",
+          "Set": "Masters 25",
+          "Code": "A25",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2007-09",
+          "Set": "Masters Edition",
+          "Code": "MED",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2008-09",
+          "Set": "Masters Edition II",
+          "Code": "ME2",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2009-09",
+          "Set": "Masters Edition III",
+          "Code": "ME3",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2011-01",
+          "Set": "Masters Edition IV",
+          "Code": "ME4",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "1999-09",
+          "Set": "Mercadian Masques",
+          "Code": "MMQ (MM)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1996-10",
+          "Set": "Mirage",
+          "Code": "MIR (MI)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2003-10",
+          "Set": "Mirrodin",
+          "Code": "MRD",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2011-02",
+          "Set": "Mirrodin Besieged",
+          "Code": "MBS",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2014-05",
+          "Set": "Modern Event Deck",
+          "Code": "MD1",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2019-06",
+          "Set": "Modern Horizons",
+          "Code": "MH1",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2024-06",
+          "Set": "Modern Horizons 3/Commander decks",
+          "Code": "M3C",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-06",
+          "Set": "Modern Horizons II",
+          "Code": "MH2",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2024-06",
+          "Set": "Modern Horizons III",
+          "Code": "MH3",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2013-06",
+          "Set": "Modern Masters",
+          "Code": "MMA",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2015-05",
+          "Set": "Modern Masters 2015",
+          "Code": "MM2",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2017-03",
+          "Set": "Modern Masters 2017",
+          "Code": "MM3",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2010-11",
+          "Set": "Momir Basic Event Deck",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2008-02",
+          "Set": "Morningtide",
+          "Code": "MOR",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-04",
+          "Set": "Multiverse Legends",
+          "Code": "MUL",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2024-02",
+          "Set": "Murders at Karlov Manor",
+          "Code": "MKM",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-02",
+          "Set": "Murders at Karlov Manor/Commander decks",
+          "Code": "MKC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2019-11",
+          "Set": "Mystery Booster",
+          "Code": "MB1",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2024-08",
+          "Set": "Mystery Booster 2",
+          "Code": "MB2",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2020-03",
+          "Set": "Mystery Booster Retail Edition",
+          "Code": "MB1",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2021-04",
+          "Set": "Mystical Archive",
+          "Code": "STA",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2000-02",
+          "Set": "Nemesis",
+          "Code": "NEM (NE)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2011-05",
+          "Set": "New Phyrexia",
+          "Code": "NPH",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2005-07",
+          "Set": "Ninth Edition",
+          "Code": "9ED",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2016-01",
+          "Set": "Oath of the Gatewatch",
+          "Code": "OGW",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2001-10",
+          "Set": "Odyssey",
+          "Code": "ODY (OD)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2002-10",
+          "Set": "Onslaught",
+          "Code": "ONS",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-04",
+          "Set": "Outlaws of Thunder Junction",
+          "Code": "OTJ",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-04",
+          "Set": "Outlaws of Thunder Junction/Commander decks",
+          "Code": "OTC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-02",
+          "Set": "Phyrexia: All Will Be One",
+          "Code": "ONE",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-02",
+          "Set": "Phyrexia: All Will Be One Commander Decks",
+          "Code": "ONC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-10",
+          "Set": "Pioneer Challenger Decks 2021",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-11",
+          "Set": "Pioneer Challenger Decks 2022",
+          "Code": "Q08",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-12",
+          "Set": "Pioneer Masters",
+          "Code": "PIO",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2007-02",
+          "Set": "Planar Chaos",
+          "Code": "PLC",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2009-09",
+          "Set": "Planechase",
+          "Code": "HOP",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2012-05",
+          "Set": "Planechase 2012",
+          "Code": "PC2",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2016-11",
+          "Set": "Planechase Anthology",
+          "Code": "PCA",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2001-01",
+          "Set": "Planeshift",
+          "Code": "PLS (PS)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2019-10",
+          "Set": "Ponies: The Galloping",
+          "Code": "PTG",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-09",
+          "Set": "Ponies: The Galloping 2 - Extra Life 2023",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "1997-05",
+          "Set": "Portal",
+          "Code": "POR (PO)",
+          "Type": "Starter set"
+        },
+        {
+          "Released": "1998-06",
+          "Set": "Portal Second Age",
+          "Code": "P02 (P2)",
+          "Type": "Starter set"
+        },
+        {
+          "Released": "1999-05",
+          "Set": "Portal Three Kingdoms",
+          "Code": "PTK (PK)",
+          "Type": "Starter set"
+        },
+        {
+          "Released": "2010-11",
+          "Set": "Premium Deck Series: Fire & Lightning",
+          "Code": "PD2",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2011-11",
+          "Set": "Premium Deck Series: Graveborn",
+          "Code": "PD3",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2009-11",
+          "Set": "Premium Deck Series: Slivers",
+          "Code": "H09",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2000-06",
+          "Set": "Prophecy",
+          "Code": "PCY (PR)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2019-01",
+          "Set": "Ravnica Allegiance",
+          "Code": "RNA",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2019-02",
+          "Set": "Ravnica Allegiance Guild Kits",
+          "Code": "GK2",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2018-10",
+          "Set": "Ravnica Allegiance Mythic Edition",
+          "Code": "MED",
+          "Type": "Special edition"
+        },
+        {
+          "Released": "2024-01",
+          "Set": "Ravnica Remastered",
+          "Code": "RVR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2005-10",
+          "Set": "Ravnica: City of Guilds",
+          "Code": "RAV",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2024-02",
+          "Set": "Ravnica: Clue Edition",
+          "Code": "CLU",
+          "Type": "Box set"
+        },
+        {
+          "Released": "1995-08",
+          "Set": "Renaissance",
+          "Code": "",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2022-11",
+          "Set": "Retro Frame Artifacts",
+          "Code": "BRR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2012-10",
+          "Set": "Return to Ravnica",
+          "Code": "RTR",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1994-04",
+          "Set": "Revised Edition",
+          "Code": "3ED (3E)",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2010-04",
+          "Set": "Rise of the Eldrazi",
+          "Code": "ROE",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2018-01",
+          "Set": "Rivals of Ixalan",
+          "Code": "RIX",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2005-08",
+          "Set": "Salvat 2005",
+          "Code": "",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2011-01",
+          "Set": "Salvat 2011",
+          "Code": "",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2005-06",
+          "Set": "Saviors of Kamigawa",
+          "Code": "SOK",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2010-10",
+          "Set": "Scars of Mirrodin",
+          "Code": "SOM",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2003-05",
+          "Set": "Scourge",
+          "Code": "SCG",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2022-11",
+          "Set": "Secret Lair 30th Anniversary Countdown Kit",
+          "Code": "SLC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-11",
+          "Set": "Secret Lair Commander Deck: 20 Ways to Win",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-08",
+          "Set": "Secret Lair Commander Deck: Angels: They're Just Like Us but Cooler and with Wings",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-01",
+          "Set": "Secret Lair Commander Deck: Raining Cats & Dogs",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2019-12",
+          "Set": "Secret Lair Drop Series(December 2019)",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-06",
+          "Set": "Secret Lair Drop Series: All-Natural, Totally Refreshing Superdrop",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-09",
+          "Set": "Secret Lair Drop Series: April Fools",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-04",
+          "Set": "Secret Lair Drop Series: April Superdrop 2022",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-08",
+          "Set": "Secret Lair Drop Series: August Superdrop 2022",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-02",
+          "Set": "Secret Lair Drop Series: Black is Magic",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-02",
+          "Set": "Secret Lair Drop Series: Burning Revelations",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-09",
+          "Set": "Secret Lair Drop Series: Camp Totally Safe Superdrop",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-09",
+          "Set": "Secret Lair Drop Series: Dan Frazier's Mox Box",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-12",
+          "Set": "Secret Lair Drop Series: December Superdrop 2022",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-12",
+          "Set": "Secret Lair Drop Series: Doctor Who: Regeneration",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-04",
+          "Set": "Secret Lair Drop Series: Dr. Lair's Secretorium Superdrop",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-08",
+          "Set": "Secret Lair Drop Series: Dungeons & Dragons 50th Anniversary Superdrop",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-03",
+          "Set": "Secret Lair Drop Series: Dungeons & Dragons: Honor Among Thieves",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-08",
+          "Set": "Secret Lair Drop Series: Every Dog Has Its Day",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-11",
+          "Set": "Secret Lair Drop Series: Extra Life 2020",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-11",
+          "Set": "Secret Lair Drop Series: Extra Life 2021",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-11",
+          "Set": "Secret Lair Drop Series: Extra Life 2022",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-06",
+          "Set": "Secret Lair Drop Series: Fall Superdrop 2023",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-02",
+          "Set": "Secret Lair Drop Series: February Superdrop 2022",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-07",
+          "Set": "Secret Lair Drop Series: Fortnite",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-09",
+          "Set": "Secret Lair Drop Series: Happy Yargle Day!",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-06",
+          "Set": "Secret Lair Drop Series: Here Be Dragons",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-07",
+          "Set": "Secret Lair Drop Series: Inside an Elevator Superdrop",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-03",
+          "Set": "Secret Lair Drop Series: International Women's Day",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-06",
+          "Set": "Secret Lair Drop Series: June Superdrop 2022",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-03",
+          "Set": "Secret Lair Drop Series: Legendary Flyers (Not That Kind)",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-08",
+          "Set": "Secret Lair Drop Series: Li'l Giri Saves the Day",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-09",
+          "Set": "Secret Lair Drop Series: Li\u2019l\u2019est Walkers",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-10",
+          "Set": "Secret Lair Drop Series: Li\u2019l\u2019ler Walkers",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-11",
+          "Set": "Secret Lair Drop Series: Marvel Superdrop",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-11",
+          "Set": "Secret Lair Drop Series: MSCHF",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-10",
+          "Set": "Secret Lair Drop Series: October Superdrop",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-10",
+          "Set": "Secret Lair Drop Series: October Superdrop 2022",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-08",
+          "Set": "Secret Lair Drop Series: Out of Time Superdrop",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-10",
+          "Set": "Secret Lair Drop Series: Pixel Perfect - Extra Life 2024",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-05",
+          "Set": "Secret Lair Drop Series: Pride Across the Multiverse",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-08",
+          "Set": "Secret Lair Drop Series: Prime Slime",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-10",
+          "Set": "Secret Lair Drop Series: Purrfection",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-11",
+          "Set": "Secret Lair Drop Series: Secretversary",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-11",
+          "Set": "Secret Lair Drop Series: Secretversary 2021",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-11",
+          "Set": "Secret Lair Drop Series: Secretversary 2023",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-02",
+          "Set": "Secret Lair Drop Series: Sheldon's Spellbook",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-09",
+          "Set": "Secret Lair Drop Series: Showcase: Zendikar Revisited",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-02",
+          "Set": "Secret Lair Drop Series: Smitten",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2025-Q1",
+          "Set": "Secret Lair Drop Series: SpongeBob SquarePants",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-10",
+          "Set": "Secret Lair Drop Series: Spookydrop 2023",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-04",
+          "Set": "Secret Lair Drop Series: Spring Superdrop 2023",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-05",
+          "Set": "Secret Lair Drop Series: Spring Superdrop 2024",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-06",
+          "Set": "Secret Lair Drop Series: Summer Superdrop",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-06",
+          "Set": "Secret Lair Drop Series: Summer Superdrop 2023",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-06",
+          "Set": "Secret Lair Drop Series: Summer Superdrop 2024",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-03",
+          "Set": "Secret Lair Drop Series: Thalia - Beyond the Helvault",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-01",
+          "Set": "Secret Lair Drop Series: The Astrology Lands",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-12",
+          "Set": "Secret Lair Drop Series: The Fairest Drop of All",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-05",
+          "Set": "Secret Lair Drop Series: The Godzilla Lands",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-10",
+          "Set": "Secret Lair Drop Series: The Walking Dead",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-02",
+          "Set": "Secret Lair Drop Series: Theros Stargazing",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-01",
+          "Set": "Secret Lair Drop Series: Winter Superdrop 2023",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2024-02",
+          "Set": "Secret Lair Drop Series: Winter Superdrop 2024",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-01",
+          "Set": "Secret Lair Drop Series: Year of the Rat",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-12",
+          "Set": "Secret Lair: Calling All Hydra Heads",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-05",
+          "Set": "Secret Lair: From Cute to Brute",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-03",
+          "Set": "Secret Lair: More Borderless Planeswalkers",
+          "Code": "SLD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-06",
+          "Set": "Secret Lair: Ultimate Edition",
+          "Code": "SLU",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-05",
+          "Set": "Secret Lair: Ultimate Edition 2",
+          "Code": "SLU",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2001-04",
+          "Set": "Seventh Edition",
+          "Code": "7ED (7E)",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2008-05",
+          "Set": "Shadowmoor",
+          "Code": "SHM",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-03",
+          "Set": "Shadows of the Past",
+          "Code": "SIS",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2016-04",
+          "Set": "Shadows over Innistrad",
+          "Code": "SOI",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-03",
+          "Set": "Shadows over Innistrad Remastered",
+          "Code": "SIR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2008-10",
+          "Set": "Shards of Alara",
+          "Code": "ALA",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2020-06",
+          "Set": "Signature Spellbook: Chandra",
+          "Code": "SS3",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2019-06",
+          "Set": "Signature Spellbook: Gideon",
+          "Code": "SS2",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2018-06",
+          "Set": "Signature Spellbook: Jace",
+          "Code": "SS1",
+          "Type": "Box set"
+        },
+        {
+          "Released": "1999-04",
+          "Set": "Sixth Edition",
+          "Code": "6ED (6E)",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2023-11",
+          "Set": "Special Guestreprints",
+          "Code": "SPG",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2018-10",
+          "Set": "Spellslinger Starter Kit",
+          "Code": "SK1",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2025-04",
+          "Set": "Spring Flourishes",
+          "Code": "SLX",
+          "Type": "Promo set"
+        },
+        {
+          "Released": "1999-08",
+          "Set": "Starter 1999",
+          "Code": "S99 (P3)",
+          "Type": "Starter set"
+        },
+        {
+          "Released": "2000-04",
+          "Set": "Starter 2000",
+          "Code": "S00",
+          "Type": "Starter set"
+        },
+        {
+          "Released": "2022-12",
+          "Set": "Starter Commander Decks",
+          "Code": "SCD",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-09",
+          "Set": "Starter Kit 2023",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2022-05",
+          "Set": "Streets of New Capenna",
+          "Code": "SNC",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2022-05",
+          "Set": "Streets of New Capenna Commander Decks",
+          "Code": "NCC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2021-04",
+          "Set": "Strixhaven: School of Mages",
+          "Code": "STX",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1998-02",
+          "Set": "Stronghold",
+          "Code": "STH (ST)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2025-04",
+          "Set": "Tarkir: Dragonstorm",
+          "Code": "TDM",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1997-10",
+          "Set": "Tempest",
+          "Code": "TMP (TE)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2015-05",
+          "Set": "Tempest Remastered",
+          "Code": "TPR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2007-07",
+          "Set": "Tenth Edition",
+          "Code": "10E",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2024-04",
+          "Set": "The Big Score",
+          "Code": "BIG",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2022-11",
+          "Set": "The Brothers' War",
+          "Code": "BRO",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2022-11",
+          "Set": "The Brothers' War Commander Decks",
+          "Code": "BRC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "1994-08",
+          "Set": "The Dark",
+          "Code": "DRK (DK)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-11",
+          "Set": "The Lord of the Rings: Holiday Release",
+          "Code": "LTC",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2023-06",
+          "Set": "The Lord of the Rings: Tales of Middle-Earth",
+          "Code": "LTR",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2023-06",
+          "Set": "The Lord of the Rings: Tales of Middle-Earth Commander Decks",
+          "Code": "LTC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-06",
+          "Set": "The Lord of the Rings: Tales of Middle-earth Starter Kit",
+          "Code": "",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2023-11",
+          "Set": "The Lost Caverns of Ixalan",
+          "Code": "LCI",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-11",
+          "Set": "The Lost Caverns of Ixalan/Commander decks",
+          "Code": "LCC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2013-09",
+          "Set": "Theros",
+          "Code": "THS",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2020-01",
+          "Set": "Theros Beyond Death",
+          "Code": "THB",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2019-10",
+          "Set": "Throne of Eldraine",
+          "Code": "ELD",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2006-10",
+          "Set": "Time Spiral",
+          "Code": "TSP",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2021-03",
+          "Set": "Time Spiral Remastered",
+          "Code": "TSR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2021-03",
+          "Set": "Time Spiral Remastered Timeshifted",
+          "Code": "TSR",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2006-10",
+          "Set": "Time Spiral Timeshifted",
+          "Code": "TSP",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2002-02",
+          "Set": "Torment",
+          "Code": "TOR",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2022-11",
+          "Set": "Transformers",
+          "Code": "BOT",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2016-10",
+          "Set": "Treasure Chests",
+          "Code": "PZ2",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2018-12",
+          "Set": "Ultimate Masters",
+          "Code": "UMA",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2022-10",
+          "Set": "Unfinity",
+          "Code": "UNF",
+          "Type": "Un-set"
+        },
+        {
+          "Released": "1998-08",
+          "Set": "Unglued",
+          "Code": "UGL (UG)",
+          "Type": "Un-set"
+        },
+        {
+          "Released": "2004-11",
+          "Set": "Unhinged",
+          "Code": "UNH",
+          "Type": "Un-set"
+        },
+        {
+          "Released": "1993-12",
+          "Set": "Unlimited Edition",
+          "Code": "2ED (2U)",
+          "Type": "Core set"
+        },
+        {
+          "Released": "2025-Q4",
+          "Set": "UnnamedUniverses Beyondset",
+          "Code": "",
+          "Type": "Supplemental set"
+        },
+        {
+          "Released": "2020-02",
+          "Set": "Unsanctioned",
+          "Code": "UND",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2017-12",
+          "Set": "Unstable",
+          "Code": "UST",
+          "Type": "Un-set"
+        },
+        {
+          "Released": "1999-06",
+          "Set": "Urza's Destiny",
+          "Code": "UDS (UD)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1999-02",
+          "Set": "Urza's Legacy",
+          "Code": "ULG (UL)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "1998-10",
+          "Set": "Urza's Saga",
+          "Code": "USG (UZ)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2014-06",
+          "Set": "Vintage Masters",
+          "Code": "VMA",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "1997-02",
+          "Set": "Visions",
+          "Code": "VIS (VI)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2019-05",
+          "Set": "War of the Spark",
+          "Code": "WAR",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2019-05",
+          "Set": "War of the Spark Mythic Edition",
+          "Code": "MED",
+          "Type": "Special edition"
+        },
+        {
+          "Released": "2022-10",
+          "Set": "Warhammer 40,000 Commander Decks",
+          "Code": "40K",
+          "Type": "Box set"
+        },
+        {
+          "Released": "1997-06",
+          "Set": "Weatherlight",
+          "Code": "WTH (WL)",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2016-04",
+          "Set": "Welcome Deck 2016",
+          "Code": "W16",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2017-04",
+          "Set": "Welcome Deck 2017",
+          "Code": "W17",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2023-09",
+          "Set": "Wilds of Eldraine",
+          "Code": "WOE",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2023-09",
+          "Set": "Wilds of Eldraine/Commander decks",
+          "Code": "WOC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2010-02",
+          "Set": "Worldwake",
+          "Code": "WWK",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2016-11",
+          "Set": "You Make the Cube",
+          "Code": "",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2009-10",
+          "Set": "Zendikar",
+          "Code": "ZEN",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2015-102016-01",
+          "Set": "Zendikar Expeditions",
+          "Code": "EXP",
+          "Type": "Compilation set"
+        },
+        {
+          "Released": "2020-09",
+          "Set": "Zendikar Rising",
+          "Code": "ZNR",
+          "Type": "Expansion set"
+        },
+        {
+          "Released": "2020-09",
+          "Set": "Zendikar Rising Commander Decks",
+          "Code": "ZNC",
+          "Type": "Box set"
+        },
+        {
+          "Released": "2020-09",
+          "Set": "Zendikar Rising Expeditions",
+          "Code": "ZNE",
+          "Type": "Compilation set"
+        }
+      ]`);
+
+      function spinTheWheel() {
+        console.log("hi!");
+      }
     </script>
   </head>
   <body>
     <main>
-      Hello world!
+      <div>
+        <p>>Hello world!</p>
+        <button onclick="spinTheWheel">Spin the wheel!</button>
+      </div>
+      <div class="chosen-sets-grid">
+
+      </div>
     </main>
     <noscript>This site requires Javascript, sorry :(</noscript>
   </body>
