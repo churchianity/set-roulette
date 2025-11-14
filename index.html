@@ -35,7 +35,7 @@
         --c2: #0E0909;
         --box-shadow-rgb: 0, 0, 0;
         --box-shadow: 0 6px 16px 0 rgba(var(--box-shadow-rgb), 0.08), 0 3px 6px -4px rgba(var(--box-shadow-rgb), 0.12), 0 9px 28px 8px rgba(var(--box-shadow-rgb), 0.05);
-  
+
         --g:#0000 66%,var(--c1) 68% 98%,#0000;
         background:
             radial-gradient(30% 30% at 0%   30%,var(--g))
@@ -82,7 +82,10 @@
         height: calc(min(20rem, 40vh) * 2);
       }
       .header {
+          background-color: black;
+          padding: 2rem;
           margin-bottom: 3rem;
+          box-shadow: var(--box-shadow);
       }
       .chosen-set {
         background: #0E0909;
@@ -117,16 +120,19 @@
         font-size: 2rem;
       }
       .form-body {
+          box-shadow: var(--box-shadow);
+          background-color: black;
           display: grid;
           grid-template-columns: 2fr 3fr;
           gap: 0.5rem;
           margin-bottom: 1rem;
           padding: 2rem;
-          backdrop-filter: blur(4px);
       }
       .action-row {
+          box-shadow: var(--box-shadow);
+          gap: 3rem;
+          background-color: black;
           padding: 2rem;
-          backdrop-filter: blur(4px);
       }
 
 .wrapper {
@@ -2931,7 +2937,7 @@
                 <span class="expansion-code">${choice["Expansion Code"]}</span>
               </div>
 
-              <div class="flex">
+              <div class="flex-col">
                 <span class="total-cards">${choice["Total Cards"]} Cards</span>
                 <span class="release-date">Released: ${choice["Release Date"]}</span>
               </div>
@@ -2987,7 +2993,7 @@
 
           <div class="form-body">
             <label id="bst-label" for="bst">Big Set Threshold (210): </label>
-            <input id="bst" type="range" min="0" max="300" value="210" onchange="" />
+            <input id="bst" type="range" min="120" max="300" value="210" onchange="" />
 
             <div style="display: none;">
             <label for="opbd">Only Pick Sets After: </label>
