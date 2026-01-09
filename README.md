@@ -7,6 +7,11 @@ This is a local-only webpage that rolls a random set of 6 MTG sets for you for t
 
 Quick-start:
 
+- go to https://churchianity.github.io/set-roulette/
+- done!
+
+OR (to run it locally/offline)
+
 - download and unzip this repository
 - double-click the `index.html` file to open it in a browser
 - done!
