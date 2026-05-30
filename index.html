@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="keyrune.css"/>
     <style>
       *, *::before, *::after {
         box-sizing: border-box;
@@ -16,6 +17,10 @@
       }
       input, button, textarea, select {
         font: inherit;
+        height: 2.25rem;
+      }
+      .invalid {
+        outline: 1px solid red;
       }
       main {
         color: white;
@@ -24,13 +29,14 @@
         min-height: 100vh;
         width: 100%;
         height: 100%;
+        padding-bottom: 1rem;
 
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        --s: 6px; /* control the size*/
+        --s: 6px;
         --c1: #3b3239;
         --c2: #0E0909;
         --box-shadow-rgb: 0, 0, 0;
@@ -71,8 +77,32 @@
         color: #FAF9F6;
         font-size: 1rem;
       }
+      .chosen-set-header {
+        width: 100%;
+        height: 1rem;
+        background: #0E0909;
+        border-radius: 50% 50% 0 0;
+        border: 2px solid orange;
+        border-bottom: none;
+      }
+      .set-symbol {
+        font-size: 3rem;
+      }
       .set-name {
-          text-align: center;
+        text-align: center;
+        line-clamp: 2;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+      }
+      .set-block {
+        color: silver;
+        font-size: 0.9rem;
+      }
+      .expansion-code {
+        color: silver;
+        text-align: center;
       }
       .chosen-sets-grid {
         display: grid;
@@ -82,26 +112,29 @@
         height: calc(min(20rem, 40vh) * 2);
       }
       .header {
-          border: 1px solid #3b3239;
-          background-color: black;
-          padding: 2rem;
-          margin-bottom: 3rem;
-          box-shadow: var(--box-shadow);
+        border: 1px solid #3b3239;
+        background-color: black;
+        padding: 2rem;
+        box-shadow: var(--box-shadow);
+      }
+      .chosen-set-container {
+        position: relative;
       }
       .chosen-set {
         background: #0E0909;
-        border-radius: 1rem;
+        border-radius: 0 0 0.5rem 0.5rem;
         width: min(30rem, 20vw);
         height: min(20rem, 40vh);
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
         justify-content: space-around;
-        align-items: center;
-        border: 1px solid #b89149;
+        border: 2px solid #b89149;
+        border-top: none;
         color: orange;
         font-weight: bold;
         gap: 0.5rem;
         box-shadow: var(--box-shadow);
+        padding-bottom: 0.5rem;
       }
       .flex {
         display: flex;
@@ -117,1854 +150,53 @@
         align-items: center;
         gap: 0.5rem;
       }
-      .set-symbol {
-        font-size: 2rem;
-      }
       .form-body {
-          border: 1px solid #3b3239;
-          box-shadow: var(--box-shadow);
-          background-color: black;
-          display: grid;
-          grid-template-columns: 2fr 3fr;
-          gap: 0.5rem;
-          margin-bottom: 1rem;
-          padding: 2rem;
+        border: 1px solid #3b3239;
+        box-shadow: var(--box-shadow);
+        background-color: black;
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        gap: 0.5rem;
+        padding: 2rem;
+      }
+      @media (max-width: 800px) {
+        .form-body {
+          grid-template-columns: 1fr;
+        }
       }
       .action-row {
-          border: 1px solid #3b3239;
-          box-shadow: var(--box-shadow);
-          gap: 3rem;
-          background-color: black;
-          padding: 2rem;
+        border: 1px solid #3b3239;
+        box-shadow: var(--box-shadow);
+        gap: 3rem;
+        background-color: black;
+        padding: 2rem;
       }
-
-.wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-height: 100vh;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.confetti {
-  position: absolute;
-  top: -100%;
-}
-
-@keyframes drop {
-  100% {
-    top: 110%;
-  }
+      .date-row {
+        display: grid;
+        grid-template-columns: 1fr min-content 1fr;
+        gap: 0.5rem;
+      }
+      .wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .confetti {
+        position: absolute;
+        top: -100%;
+      }
+      @keyframes drop {
+        100% {
+          top: 110%;
+        }
+        0% {
+          top: 0%;
+        }
+      }
     </style>
-<style>
-@font-face {
-  font-family: 'Keyrune';
-  src: url('./fonts/keyrune.eot?v=3.17.1');
-  src: url('./fonts/keyrune.eot?#iefix&v=3.17.1') format('embedded-opentype'), url('./fonts/keyrune.woff2?v=3.17.1') format('woff2'), url('./fonts/keyrune.woff?v=3.17.1') format('woff'), url('./fonts/keyrune.ttf?v=3.17.1') format('truetype'), url('./fonts/keyrune.svg?v=3.17.1#keyrune') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-.ss {
-  display: inline-block;
-  font: normal normal normal 14px/1 Keyrune;
-  font-size: inherit;
-  line-height: 1em;
-  text-rendering: auto;
-  transform: translate(0, 0);
-  speak: none;
-  text-transform: none;
-  vertical-align: middle;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.ss:before {
-  content: "\e684";
-}
-/**
- * Larger sizes */
-.ss-2x {
-  font-size: 2em;
-}
-.ss-3x {
-  font-size: 3em;
-}
-.ss-4x {
-  font-size: 4em;
-}
-.ss-5x {
-  font-size: 5em;
-}
-.ss-6x {
-  font-size: 6em;
-}
-/**
- * Handling for set symbols that use an inner and outer layer, like M21
- *
- * The inner layer is what gets colorized and is the traditional "set symbol"
- * The outer layer takes over as the border, and is white for common cards
- * but black for uncommon, rare, and mythic.
- */
-.ss-duo {
-  color: #fff;
-  /**
-     * white sections are ::after
-     * color sections are ::before */
-}
-.ss-duo::after {
-  color: #000;
-  content: '';
-  display: block;
-  font-size: 1em;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-.ss-duo.ss-40k::before {
-  content: "\e999";
-  width: 100%;
-}
-.ss-duo.ss-40k::after {
-  content: "\e99b";
-  color: #fff !important;
-}
-.ss-duo.ss-xdnd::after,
-.ss-duo.ss-afr::after {
-  content: "\e973";
-}
-.ss-duo.ss-afc::after {
-  content: "\e982";
-}
-.ss-duo.ss-c21::after {
-  content: "\e97f";
-}
-.ss-duo.ss-clb::after {
-  content: "\e992";
-}
-.ss-duo.ss-cc2::after {
-  content: "\e988";
-}
-.ss-duo.ss-dmc::before {
-  content: "\e995";
-  width: 100%;
-}
-.ss-duo.ss-dmc::after {
-  content: "\e997";
-  color: #fff !important;
-}
-.ss-duo.ss-drc::before {
-  content: "\e9e9";
-  width: 100%;
-}
-.ss-duo.ss-drc::after {
-  content: "\e9eb";
-  color: #fff !important;
-}
-.ss-duo.ss-dsc::after {
-  content: "\e9de";
-}
-.ss-duo.ss-eoc::after {
-  content: "\e9f7";
-  color: #fff !important;
-}
-.ss-duo.ss-j21::after {
-  content: "\e984";
-}
-.ss-duo.ss-khc::before {
-  content: "\e9c5";
-  width: 100%;
-}
-.ss-duo.ss-khc::after {
-  content: "\e9c6";
-  color: #fff !important;
-}
-.ss-duo.ss-ltc::before {
-  content: "\e9b7";
-  width: 100%;
-}
-.ss-duo.ss-ltc::after {
-  content: "\e9b8";
-  color: #fff !important;
-}
-.ss-duo.ss-m3c::after {
-  content: "\e9d1";
-  color: #fff !important;
-}
-.ss-duo.ss-mid::after {
-  content: "\e979";
-}
-.ss-duo.ss-mar::after {
-  content: "\e9fa";
-  color: #fff !important;
-}
-.ss-duo.ss-ncc::before {
-  content: "\e98f";
-}
-.ss-duo.ss-ncc::after {
-  content: "\e990";
-}
-.ss-duo.ss-otc::after {
-  content: "\e9d3";
-  color: #fff !important;
-}
-.ss-duo.ss-scd::after {
-  content: "\e9ac";
-}
-.ss-duo.ss-spm::after {
-  content: "\e9f2";
-  color: #fff !important;
-}
-.ss-duo.ss-tla::before {
-  content: "\e9fc";
-  width: 100%;
-}
-.ss-duo.ss-tla::after {
-  content: "\e9fe";
-  color: #fff !important;
-}
-.ss-duo.ss-una::after {
-  content: "\e9bf";
-  color: #fff !important;
-}
-.ss-duo.ss-common:after {
-  color: #fff;
-}
-.ss-duo.ss-uncommon::after,
-.ss-duo.ss-rare::after,
-.ss-duo.ss-mythic::after {
-  color: #000;
-}
-.ss-duo.ss-uncommon.ss-clb::after,
-.ss-duo.ss-rare.ss-clb::after,
-.ss-duo.ss-mythic.ss-clb::after {
-  color: #fff;
-}
-/**
- * Rarity colors */
-.ss-common {
-  color: #1A1718;
-}
-.ss-grad::before {
-  background: -webkit-gradient(linear, left top, right top, color-stop(1%, #302b2c), color-stop(50%, #474040), color-stop(100%, #302b2c));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #302b2c 1%, #474040 50%, #302b2c 100%);
-  background: linear-gradient(90deg, #302b2c 0%, #474040 50%, #302b2c 100%);
-  -webkit-background-clip: text;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent;
-}
-.ss-grad.ss-duo::after {
-  -webkit-text-fill-color: inherit;
-}
-.ss-uncommon {
-  color: #707883;
-}
-.ss-uncommon.ss-grad::before {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #5a6572), color-stop(50%, #9e9e9e), color-stop(100%, #5a6572));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #5a6572 0%, #9e9e9e 50%, #5a6572 100%);
-  background: linear-gradient(90deg, #5a6572 0%, #9e9e9e 50%, #5a6572 100%);
-}
-.ss-rare {
-  color: #A58E4A;
-}
-.ss-rare.ss-grad::before {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #876a3b), color-stop(50%, #dfbd6b), color-stop(100%, #876a3b));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #876a3b 0%, #dfbd6b 50%, #876a3b 100%);
-  background: linear-gradient(90deg, #876a3b 0%, #dfbd6b 50%, #876a3b 100%);
-}
-.ss-mythic {
-  color: #BF4427;
-}
-.ss-mythic.ss-grad::before {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #b21f0f), color-stop(50%, #f38300), color-stop(100%, #b21f0f));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #b21f0f 0%, #f38300 50%, #b21f0f 100%);
-  background: linear-gradient(90deg, #b21f0f 0%, #f38300 50%, #b21f0f 100%);
-}
-.ss-timeshifted {
-  color: #652978;
-}
-.ss-timeshifted.ss-grad::before {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #652978), color-stop(50%, #c09ac5), color-stop(100%, #652978));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(-45deg, #652978 0%, #c09ac5 50%, #652978 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(90deg, #652978 0%, #c09ac5 50%, #652978 100%);
-}
-.ss-foil {
-  color: #a6dced;
-}
-.ss-foil.ss-grad::before {
-  background: -webkit-linear-gradient(-45deg, #ea8d66 0%, #ea8d66 10%, #fdef8a 17%, #8bcc93 33%, #a6dced 50%, #6f75aa 67%, #e599c2 83%, #eeeeee 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, #ea8d66 0%, #ea8d66 15%, #fdef8a 28%, #8bcc93 42%, #a6dced 55%, #6f75aa 68%, #e599c2 84%, #e599c2 100%);
-}
-/**
- * Fixed width */
-.ss-fw {
-  width: 1.28571429em;
-  text-align: center;
-}
-/**
- * Core */
-.ss-lea:before {
-  content: "\e600";
-}
-.ss-leb:before {
-  content: "\e601";
-}
-.ss-2ed:before {
-  content: "\e602";
-}
-.ss-3ed:before {
-  content: "\e603";
-}
-.ss-4ed:before {
-  content: "\e604";
-}
-.ss-psum:before {
-  content: "\e605";
-}
-.ss-5ed:before {
-  content: "\e606";
-}
-.ss-6ed:before {
-  content: "\e607";
-}
-.ss-7ed:before {
-  content: "\e608";
-}
-.ss-8ed:before {
-  content: "\e609";
-}
-.ss-9ed:before {
-  content: "\e60a";
-}
-.ss-10e:before {
-  content: "\e60b";
-}
-.ss-m10:before {
-  content: "\e60c";
-}
-.ss-m11:before {
-  content: "\e60d";
-}
-.ss-m12:before {
-  content: "\e60e";
-}
-.ss-m13:before {
-  content: "\e60f";
-}
-.ss-m14:before {
-  content: "\e610";
-}
-.ss-m15:before {
-  content: "\e611";
-}
-.ss-bcore:before {
-  content: "\e612";
-}
-.ss-ori:before {
-  content: "\e697";
-}
-.ss-m19:before {
-  content: "\e941";
-}
-.ss-m20:before {
-  content: "\e95d";
-}
-.ss-1e:before {
-  content: "\e947";
-}
-.ss-2e:before {
-  content: "\e948";
-}
-.ss-2u:before {
-  content: "\e949";
-}
-.ss-3e:before {
-  content: "\e94a";
-}
-.ss-m21:before {
-  content: "\e960";
-}
-.ss-xdnd:before,
-.ss-afr:before {
-  content: "\e972";
-}
-.ss-fdn:before {
-  content: "\e9d8";
-}
-/**
- * Expansions */
-/* Artifact Block */
-.ss-arn:before {
-  content: "\e613";
-}
-.ss-atq:before {
-  content: "\e614";
-}
-.ss-leg:before {
-  content: "\e615";
-}
-/* Wizards Block */
-.ss-drk:before {
-  content: "\e616";
-}
-.ss-fem:before {
-  content: "\e617";
-}
-.ss-hml:before {
-  content: "\e618";
-}
-/* Ice Age Block */
-.ss-ice:before {
-  content: "\e619";
-}
-.ss-ice2:before {
-  content: "\e925";
-}
-.ss-all:before {
-  content: "\e61a";
-}
-.ss-csp:before {
-  content: "\e61b";
-}
-/* Mirage Block */
-.ss-mir:before {
-  content: "\e61c";
-}
-.ss-vis:before {
-  content: "\e61d";
-}
-.ss-wth:before {
-  content: "\e61e";
-}
-/* Tempest Block */
-.ss-tmp:before {
-  content: "\e61f";
-}
-.ss-sth:before {
-  content: "\e620";
-}
-.ss-exo:before {
-  content: "\e621";
-}
-/* Urza's Block */
-.ss-usg:before {
-  content: "\e622";
-}
-.ss-ulg:before {
-  content: "\e623";
-}
-.ss-uds:before {
-  content: "\e624";
-}
-/* Mercadian Block */
-.ss-mmq:before {
-  content: "\e625";
-}
-.ss-nem:before,
-.ss-nms:before {
-  content: "\e626";
-}
-.ss-pcy:before {
-  content: "\e627";
-}
-/* Invasion Block */
-.ss-inv:before {
-  content: "\e628";
-}
-.ss-pls:before {
-  content: "\e629";
-}
-.ss-apc:before {
-  content: "\e62a";
-}
-/* Odyssey Block */
-.ss-ody:before {
-  content: "\e62b";
-}
-.ss-tor:before {
-  content: "\e62c";
-}
-.ss-jud:before {
-  content: "\e62d";
-}
-/* Onslaught Block */
-.ss-ons:before {
-  content: "\e62e";
-}
-.ss-lgn:before {
-  content: "\e62f";
-}
-.ss-scg:before {
-  content: "\e630";
-}
-/* Mirrodin Block */
-.ss-mrd:before {
-  content: "\e631";
-}
-.ss-dst:before {
-  content: "\e632";
-}
-.ss-5dn:before {
-  content: "\e633";
-}
-/* Kamigawa Block */
-.ss-chk:before {
-  content: "\e634";
-}
-.ss-bok:before {
-  content: "\e635";
-}
-.ss-sok:before {
-  content: "\e636";
-}
-/* Ravnica Block */
-.ss-rav:before {
-  content: "\e637";
-}
-.ss-gpt:before {
-  content: "\e638";
-}
-.ss-dis:before {
-  content: "\e639";
-}
-/* Time Spiral Block */
-.ss-tsp:before {
-  content: "\e63a";
-}
-.ss-plc:before {
-  content: "\e63b";
-}
-.ss-fut:before {
-  content: "\e63c";
-}
-/* Lorwyn Block */
-.ss-lrw:before {
-  content: "\e63d";
-}
-.ss-mor:before {
-  content: "\e63e";
-}
-/* Shadowmoor Block */
-.ss-shm:before {
-  content: "\e63f";
-}
-.ss-eve:before {
-  content: "\e640";
-}
-/* Alara Block */
-.ss-ala:before {
-  content: "\e641";
-}
-.ss-con:before {
-  content: "\e642";
-}
-.ss-arb:before {
-  content: "\e643";
-}
-/* Zendikar Block */
-.ss-zen:before {
-  content: "\e644";
-}
-.ss-wwk:before {
-  content: "\e645";
-}
-.ss-roe:before {
-  content: "\e646";
-}
-/* Scars Block */
-.ss-som:before {
-  content: "\e647";
-}
-.ss-mbs:before {
-  content: "\e648";
-}
-.ss-nph:before {
-  content: "\e649";
-}
-/* Innistrad Block */
-.ss-isd:before {
-  content: "\e64a";
-}
-.ss-dka:before {
-  content: "\e64b";
-}
-.ss-avr:before {
-  content: "\e64c";
-}
-/* RTR Block */
-.ss-rtr:before {
-  content: "\e64d";
-}
-.ss-gtc:before {
-  content: "\e64e";
-}
-.ss-dgm:before {
-  content: "\e64f";
-}
-/* Theros Block */
-.ss-ths:before {
-  content: "\e650";
-}
-.ss-bng:before {
-  content: "\e651";
-}
-.ss-jou:before {
-  content: "\e652";
-}
-/* Khans Block */
-.ss-ktk:before {
-  content: "\e653";
-}
-.ss-frf:before {
-  content: "\e654";
-}
-.ss-dtk:before {
-  content: "\e693";
-}
-/* Return to Zendikar Block */
-.ss-bfz:before {
-  content: "\e699";
-}
-.ss-ogw:before {
-  content: "\e901";
-}
-/* Return to Innistrad Block */
-.ss-soi:before {
-  content: "\e902";
-}
-.ss-emn:before {
-  content: "\e90b";
-}
-/* Kaladesh Block */
-.ss-kld:before {
-  content: "\e90e";
-}
-.ss-aer:before {
-  content: "\e90f";
-}
-/* Amonkhet Block */
-.ss-akh:before {
-  content: "\e914";
-}
-.ss-hou:before {
-  content: "\e924";
-}
-/* Ixalan Block */
-.ss-xln:before {
-  content: "\e92e";
-}
-.ss-rix:before {
-  content: "\e92f";
-}
-/* Dominaria Block */
-.ss-dom:before {
-  content: "\e93f";
-}
-/* Guilds of Ravnica Block */
-.ss-grn:before,
-.ss-gk1:before {
-  content: "\e94b";
-}
-.ss-rna:before,
-.ss-gk2:before {
-  content: "\e959";
-}
-.ss-war:before {
-  content: "\e95a";
-}
-/* Eldraine Block */
-.ss-eld:before {
-  content: "\e95e";
-}
-/* 2020 Sets */
-.ss-thb:before {
-  content: "\e961";
-}
-.ss-iko:before {
-  content: "\e962";
-}
-.ss-znr:before {
-  content: "\e963";
-}
-/* 2021 Sets */
-.ss-xkld:before,
-.ss-khm:before {
-  content: "\e974";
-}
-.ss-xssm:before,
-.ss-stx:before {
-  content: "\e975";
-}
-.ss-mid:before {
-  content: "\e978";
-}
-.ss-vow:before {
-  content: "\e977";
-}
-/* 2022 Sets */
-.ss-neo:before {
-  content: "\e98c";
-}
-.ss-snc:before {
-  content: "\e98b";
-}
-.ss-dmu:before {
-  content: "\e993";
-}
-.ss-bro:before {
-  content: "\e99d";
-}
-/* 2023 Sets */
-.ss-one:before {
-  content: "\e9a1";
-}
-.ss-mom:before {
-  content: "\e9a2";
-}
-.ss-mat:before {
-  content: "\e9a3";
-}
-.ss-woe:before {
-  content: "\e9ae";
-}
-.ss-lci:before {
-  content: "\e9c2";
-}
-/* 2024 Sets */
-.ss-mkm:before {
-  content: "\e9c9";
-}
-.ss-otj:before {
-  content: "\e9cc";
-}
-.ss-blb:before {
-  content: "\e9cd";
-}
-.ss-dsk:before {
-  content: "\e9d7";
-}
-/* 2025 Sets */
-.ss-dft:before {
-  content: "\e9e0";
-}
-.ss-tdm:before {
-  content: "\e9e6";
-}
-.ss-fin:before {
-  content: "\e9ed";
-}
-.ss-eoe:before {
-  content: "\e9f0";
-}
-.ss-spm:before {
-  content: "\e9f1";
-}
-.ss-tla:before {
-  content: "\e9fb";
-}
-/**
- * Command Zone */
-.ss-van:before {
-  content: "\e655";
-}
-.ss-hop:before {
-  content: "\e656";
-}
-.ss-arc:before {
-  content: "\e657";
-}
-.ss-cmd:before {
-  content: "\e658";
-}
-.ss-pc2:before {
-  content: "\e659";
-}
-.ss-cm1:before {
-  content: "\e65a";
-}
-.ss-c13:before {
-  content: "\e65b";
-}
-.ss-cns:before {
-  content: "\e65c";
-}
-.ss-c14:before {
-  content: "\e65d";
-}
-.ss-c15:before {
-  content: "\e900";
-}
-.ss-cn2:before {
-  content: "\e904";
-}
-.ss-c16:before {
-  content: "\e9e5";
-}
-.ss-pca:before {
-  content: "\e911";
-}
-.ss-cma:before {
-  content: "\e916";
-}
-.ss-e01:before,
-.ss-ann:before {
-  content: "\e92d";
-}
-.ss-e02:before {
-  content: "\e931";
-}
-.ss-c17:before {
-  content: "\e934";
-}
-.ss-cm2:before {
-  content: "\e940";
-}
-.ss-bbd:before {
-  content: "\e942";
-}
-.ss-c18:before {
-  content: "\e946";
-}
-.ss-c19:before {
-  content: "\e95f";
-}
-.ss-c20:before {
-  content: "\e966";
-}
-.ss-znc:before {
-  content: "\e967";
-}
-.ss-cc1:before {
-  content: "\e968";
-}
-.ss-cmr:before,
-.ss-cmc:before {
-  content: "\e969";
-}
-.ss-khc:before {
-  content: "\e97d";
-}
-.ss-c21:before {
-  content: "\e97e";
-}
-.ss-afc:before {
-  content: "\e981";
-}
-.ss-mic:before {
-  content: "\e985";
-}
-.ss-voc:before {
-  content: "\e986";
-}
-.ss-cc2:before {
-  content: "\e987";
-}
-.ss-nec:before {
-  content: "\e98d";
-}
-.ss-ncc:before {
-  content: "\e98e";
-}
-.ss-clb:before {
-  content: "\e991";
-}
-.ss-dmc:before {
-  content: "\e994";
-}
-.ss-40k:before {
-  content: "\e998";
-}
-.ss-brc:before {
-  content: "\e99f";
-}
-.ss-onc:before {
-  content: "\e9a8";
-}
-.ss-moc:before {
-  content: "\e9a9";
-}
-.ss-scd:before {
-  content: "\e9ab";
-}
-.ss-cmm:before {
-  content: "\e9b5";
-}
-.ss-ltc:before {
-  content: "\e9b6";
-}
-.ss-woc:before {
-  content: "\e9b9";
-}
-.ss-lcc:before {
-  content: "\e9c7";
-}
-.ss-mkc:before {
-  content: "\e9ca";
-}
-.ss-otc:before {
-  content: "\e9d2";
-}
-.ss-blc:before {
-  content: "\e9d4";
-}
-.ss-m3c:before {
-  content: "\e9d0";
-}
-.ss-dsc:before {
-  content: "\e9dc";
-}
-.ss-fdc:before {
-  content: "\e9e4";
-}
-.ss-drc:before {
-  content: "\e9e8";
-}
-.ss-tdc:before {
-  content: "\e9f4";
-}
-.ss-fic:before {
-  content: "\e9f5";
-}
-.ss-eoc:before {
-  content: "\e9f6";
-}
-/**
- * Reprint */
-.ss-chr:before {
-  content: "\e65e";
-}
-.ss-ath:before {
-  content: "\e65f";
-}
-.ss-brb:before {
-  content: "\e660";
-}
-.ss-btd:before {
-  content: "\e661";
-}
-.ss-dkm:before {
-  content: "\e662";
-}
-.ss-mma:before {
-  content: "\e663";
-}
-.ss-mm2:before {
-  content: "\e695";
-}
-.ss-ema:before {
-  content: "\e903";
-}
-.ss-mm3:before {
-  content: "\e912";
-}
-.ss-ren:before,
-.ss-xren:before {
-  content: "\e917";
-}
-.ss-rin:before,
-.ss-xrin:before {
-  content: "\e918";
-}
-.ss-ima:before {
-  content: "\e935";
-}
-.ss-a25:before {
-  content: "\e93d";
-}
-.ss-uma:before {
-  content: "\e958";
-}
-.ss-mh1:before {
-  content: "\e95b";
-}
-.ss-2xm:before {
-  content: "\e96e";
-}
-.ss-jmp:before {
-  content: "\e96f";
-}
-.ss-mb1:before {
-  content: "\e971";
-}
-.ss-mh2:before {
-  content: "\e97b";
-}
-.ss-sta:before {
-  content: "\e980";
-}
-.ss-j21:before {
-  content: "\e983";
-}
-.ss-2x2:before {
-  content: "\e99c";
-}
-.ss-brr:before {
-  content: "\e9a0";
-}
-.ss-j22:before {
-  content: "\e9ad";
-}
-.ss-mul:before {
-  content: "\e9ba";
-}
-.ss-wot:before {
-  content: "\e9c0";
-}
-.ss-br:before {
-  content: "\e9c1";
-}
-.ss-spg:before {
-  content: "\e9c8";
-}
-.ss-otp:before {
-  content: "\e9d5";
-}
-.ss-big:before {
-  content: "\e9d6";
-}
-.ss-mb2:before {
-  content: "\e9d9";
-}
-.ss-j25a:before {
-  content: "\e9db";
-}
-.ss-j25:before {
-  content: "\e9df";
-}
-.ss-pio:before {
-  content: "\e9e7";
-}
-.ss-fca:before {
-  content: "\e9f8";
-}
-.ss-mar:before {
-  content: "\e9f9";
-}
-/**
- * Beginner */
-.ss-por:before {
-  content: "\e664";
-}
-.ss-p02:before,
-.ss-po2:before {
-  content: "\e665";
-}
-.ss-ptk:before {
-  content: "\e666";
-}
-.ss-s99:before {
-  content: "\e667";
-}
-.ss-s00:before {
-  content: "\e668";
-}
-.ss-w16:before {
-  content: "\e907";
-}
-.ss-w17:before {
-  content: "\e923";
-}
-/**
- * Duel Decks */
-.ss-evg:before {
-  content: "\e669";
-}
-.ss-dd2:before {
-  content: "\e66a";
-}
-.ss-ddc:before {
-  content: "\e66b";
-}
-.ss-ddd:before {
-  content: "\e66c";
-}
-.ss-dde:before {
-  content: "\e66d";
-}
-.ss-ddf:before {
-  content: "\e66e";
-}
-.ss-ddg:before {
-  content: "\e66f";
-}
-.ss-ddh:before {
-  content: "\e670";
-}
-.ss-ddi:before {
-  content: "\e671";
-}
-.ss-ddj:before {
-  content: "\e672";
-}
-.ss-ddk:before {
-  content: "\e673";
-}
-.ss-ddl:before {
-  content: "\e674";
-}
-.ss-ddm:before {
-  content: "\e675";
-}
-.ss-ddn:before {
-  content: "\e676";
-}
-.ss-ddo:before {
-  content: "\e677";
-}
-.ss-ddp:before {
-  content: "\e698";
-}
-.ss-ddq:before {
-  content: "\e908";
-}
-.ss-ddr:before {
-  content: "\e90d";
-}
-.ss-td2:before {
-  content: "\e91c";
-}
-.ss-dds:before {
-  content: "\e921";
-}
-.ss-ddt:before {
-  content: "\e933";
-}
-.ss-ddu:before {
-  content: "\e93e";
-}
-/**
- * From the Vault */
-.ss-drb:before {
-  content: "\e678";
-}
-.ss-v09:before {
-  content: "\e679";
-}
-.ss-v10:before {
-  content: "\e67a";
-}
-.ss-v11:before {
-  content: "\e67b";
-}
-.ss-v12:before {
-  content: "\e67c";
-}
-.ss-v13:before {
-  content: "\e67d";
-}
-.ss-v14:before {
-  content: "\e67e";
-}
-.ss-v15:before {
-  content: "\e905";
-}
-.ss-v16:before {
-  content: "\e906";
-}
-.ss-v0x:before {
-  content: "\e920";
-}
-.ss-v17:before {
-  content: "\e939";
-}
-/**
- * Premium Deck Series */
-.ss-h09:before {
-  content: "\e67f";
-}
-.ss-pd2:before {
-  content: "\e680";
-}
-.ss-pd3:before {
-  content: "\e681";
-}
-.ss-md1:before {
-  content: "\e682";
-}
-/**
- * Signature Spellbook */
-.ss-ss1:before {
-  content: "\e944";
-}
-.ss-ss2:before {
-  content: "\e95c";
-}
-.ss-ss3:before {
-  content: "\e96d";
-}
-/**
- * Global Series */
-.ss-gs1:before {
-  content: "\e945";
-}
-/**
- * Guild Kits */
-.ss-azorius:before {
-  content: "\e94e";
-}
-.ss-boros:before {
-  content: "\e94f";
-}
-.ss-dimir:before {
-  content: "\e950";
-}
-.ss-golgari:before {
-  content: "\e951";
-}
-.ss-gruul:before {
-  content: "\e952";
-}
-.ss-izzet:before {
-  content: "\e953";
-}
-.ss-orzhov:before {
-  content: "\e954";
-}
-.ss-rakdos:before {
-  content: "\e955";
-}
-.ss-selesnya:before {
-  content: "\e956";
-}
-.ss-simic:before {
-  content: "\e957";
-}
-/**
- * Other Supplemental Products */
-.ss-gnt:before {
-  content: "\e94d";
-}
-.ss-gn2:before {
-  content: "\e964";
-}
-.ss-tsr:before {
-  content: "\e976";
-}
-.ss-dmr:before {
-  content: "\e9a4";
-}
-.ss-gn3:before {
-  content: "\e9a5";
-}
-.ss-ltr:before {
-  content: "\e9af";
-}
-.ss-who:before {
-  content: "\e9b0";
-}
-.ss-rvr:before {
-  content: "\e9bb";
-}
-.ss-pip:before {
-  content: "\e9c3";
-}
-.ss-clu:before {
-  content: "\e9cb";
-}
-.ss-acr:before {
-  content: "\e9ce";
-}
-.ss-mh3:before {
-  content: "\e9cf";
-}
-.ss-inr:before {
-  content: "\e9e2";
-}
-.ss-spe:before {
-  content: "\e9f3";
-}
-/**
- * Promotional */
-.ss-pgru:before {
-  content: "\e683";
-}
-.ss-pmtg1:before {
-  content: "\e684";
-}
-.ss-pmtg2:before {
-  content: "\e685";
-}
-.ss-pleaf:before {
-  content: "\e686";
-}
-.ss-pmei:before,
-.ss-htr:before,
-.ss-htr17:before {
-  content: "\e687";
-}
-.ss-parl:before {
-  content: "\e688";
-}
-.ss-dpa:before {
-  content: "\e689";
-}
-.ss-pbook:before {
-  content: "\e68a";
-}
-.ss-past:before {
-  content: "\e68b";
-}
-.ss-parl2:before {
-  content: "\e68c";
-}
-.ss-exp:before {
-  content: "\e69a";
-}
-.ss-psalvat05:before {
-  content: "\e909";
-}
-.ss-psalvat11:before {
-  content: "\e90a";
-}
-.ss-mps:before,
-.ss-mp1:before {
-  content: "\e913";
-}
-.ss-pxbox:before {
-  content: "\e915";
-}
-.ss-pmps:before {
-  content: "\e919";
-}
-.ss-pmpu:before {
-  content: "\e91a";
-}
-.ss-mp2:before {
-  content: "\e922";
-}
-.ss-pidw:before {
-  content: "\e92c";
-}
-.ss-pdrc:before {
-  content: "\e932";
-}
-.ss-pheart:before {
-  content: "\e936";
-}
-.ss-h17:before {
-  content: "\e938";
-}
-.ss-pdep:before {
-  content: "\e93a";
-}
-.ss-psega:before {
-  content: "\e93b";
-}
-.ss-ptsa:before {
-  content: "\e93c";
-}
-.ss-parl3:before {
-  content: "\e943";
-}
-.ss-med:before {
-  content: "\e94c";
-}
-.ss-ptg:before {
-  content: "\e965";
-}
-.ss-j20:before {
-  content: "\e96a";
-}
-.ss-zne:before {
-  content: "\e97a";
-}
-.ss-bot:before {
-  content: "\e99e";
-}
-.ss-rex:before {
-  content: "\e9c4";
-}
-.ss-eos:before {
-  content: "\ea00";
-}
-/**
- * Secret Lairs */
-.ss-slu:before {
-  content: "\e687";
-}
-.ss-sld:before {
-  content: "\e687";
-}
-.ss-psld:before {
-  content: "\e687";
-}
-.ss-sld2:before {
-  content: "\e9bc";
-}
-/**
- * Digital */
-.ss-me1:before {
-  content: "\e68d";
-}
-.ss-me2:before {
-  content: "\e68e";
-}
-.ss-me3:before {
-  content: "\e68f";
-}
-.ss-me4:before {
-  content: "\e690";
-}
-.ss-tpr:before {
-  content: "\e694";
-}
-.ss-vma:before {
-  content: "\e696";
-}
-.ss-pz1:before,
-.ss-xlcu:before {
-  content: "\e90c";
-}
-.ss-modo:before,
-.ss-pmodo:before {
-  content: "\e91b";
-}
-.ss-duels:before,
-.ss-xduels:before {
-  content: "\e91d";
-}
-.ss-xmods:before {
-  content: "\e91e";
-}
-.ss-pz2:before {
-  content: "\e91f";
-}
-.ss-ha1:before {
-  content: "\e96b";
-}
-.ss-akr:before {
-  content: "\e970";
-}
-.ss-klr:before {
-  content: "\e97c";
-}
-.ss-y22:before,
-.ss-ymid:before,
-.ss-yneo:before,
-.ss-ysnc:before {
-  content: "\e989";
-}
-.ss-hbg:before {
-  content: "\e9a6";
-}
-.ss-y23:before,
-.ss-ybro:before,
-.ss-ydmu:before,
-.ss-yone:before {
-  content: "\e9a7";
-}
-.ss-sir:before {
-  content: "\e9b1";
-}
-.ss-sis:before {
-  content: "\e9b2";
-}
-.ss-ea1:before {
-  content: "\e9b4";
-}
-.ss-y24:before,
-.ss-ylci:before,
-.ss-ymkm:before,
-.ss-yotj:before,
-.ss-ywoe:before {
-  content: "\e9bd";
-}
-.ss-y25:before,
-.ss-yblb:before,
-.ss-ydft:before,
-.ss-ydsk:before,
-.ss-ytdm:before {
-  content: "\e9da";
-}
-.ss-pma:before {
-  content: "\ea01";
-}
-.ss-pm2:before {
-  content: "\ea02";
-}
-.ss-dvk:before {
-  content: "\ea03";
-}
-/**
- * Un-serious */
-.ss-ugl:before {
-  content: "\e691";
-}
-.ss-unh:before {
-  content: "\e692";
-}
-.ss-ust:before {
-  content: "\e930";
-}
-.ss-und:before {
-  content: "\e96c";
-}
-.ss-unf:before {
-  content: "\e98a";
-}
-.ss-una:before {
-  content: "\e9be";
-}
-/**
- * Unofficial */
-.ss-xcle:before {
-  content: "\e926";
-}
-.ss-xice:before {
-  content: "\e927";
-}
-.ss-x2ps:before {
-  content: "\e928";
-}
-.ss-x4ea:before {
-  content: "\e929";
-}
-.ss-papac:before {
-  content: "\e92a";
-}
-.ss-peuro:before {
-  content: "\e92b";
-}
-.ss-pfnm:before {
-  content: "\e937";
-}
-.ss-30a:before {
-  content: "\e9aa";
-}
-/**
- * 
- * Border layer using ::after as well
- * 
- * Symbols cannot have both .duo and .border applied as both 
- * make use of the same pseudoelement in v3.
- * 
- * For duo icons that have an inner white layer as well as a 
- * border layer, we need to use all 3 available pseudoelements.
- */
-.ss-border {
-  /**
-     * specific border glyphs for these sets, handled via ::after
-     */
-}
-.ss-border::before {
-  paint-order: stroke fill;
-  -webkit-text-stroke: 0.1em #000;
-}
-.ss-border.ss-common::before {
-  -webkit-text-stroke: 0.1em #fff;
-}
-.ss-border.ss-40k::before,
-.ss-border.ss-arc::before,
-.ss-border.ss-c13::before,
-.ss-border.ss-c14::before,
-.ss-border.ss-c15::before,
-.ss-border.ss-c16::before,
-.ss-border.ss-cm1::before,
-.ss-border.ss-cmd::before,
-.ss-border.ss-cns::before,
-.ss-border.ss-dft::before,
-.ss-border.ss-dmc::before,
-.ss-border.ss-drc::before,
-.ss-border.ss-dsc::before,
-.ss-border.ss-eos::before,
-.ss-border.ss-fin::before,
-.ss-border.ss-hop::before,
-.ss-border.ss-inr::before,
-.ss-border.ss-pc2::before,
-.ss-border.ss-sis::before,
-.ss-border.ss-tdm::before,
-.ss-border.ss-tla::before,
-.ss-border.ss-van::before {
-  -webkit-text-stroke: 0 !important;
-}
-.ss-border.ss-40k:not(.ss-duo)::after,
-.ss-border.ss-arc:not(.ss-duo)::after,
-.ss-border.ss-c13:not(.ss-duo)::after,
-.ss-border.ss-c14:not(.ss-duo)::after,
-.ss-border.ss-c15:not(.ss-duo)::after,
-.ss-border.ss-c16:not(.ss-duo)::after,
-.ss-border.ss-cm1:not(.ss-duo)::after,
-.ss-border.ss-cmd:not(.ss-duo)::after,
-.ss-border.ss-cns:not(.ss-duo)::after,
-.ss-border.ss-dft:not(.ss-duo)::after,
-.ss-border.ss-dmc:not(.ss-duo)::after,
-.ss-border.ss-drc:not(.ss-duo)::after,
-.ss-border.ss-dsc:not(.ss-duo)::after,
-.ss-border.ss-eos:not(.ss-duo)::after,
-.ss-border.ss-fin:not(.ss-duo)::after,
-.ss-border.ss-hop:not(.ss-duo)::after,
-.ss-border.ss-inr:not(.ss-duo)::after,
-.ss-border.ss-pc2:not(.ss-duo)::after,
-.ss-border.ss-sis:not(.ss-duo)::after,
-.ss-border.ss-tdm:not(.ss-duo)::after,
-.ss-border.ss-tla:not(.ss-duo)::after,
-.ss-border.ss-van:not(.ss-duo)::after {
-  color: #fff;
-  display: block;
-  font-size: 1em;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-.ss-border.ss-40k:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-arc:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-c13:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-c14:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-c15:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-c16:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-cm1:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-cmd:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-cns:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-dft:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-dmc:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-drc:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-dsc:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-eos:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-fin:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-hop:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-inr:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-pc2:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-sis:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-tdm:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-tla:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-van:not(.ss-duo).ss-uncommon::after,
-.ss-border.ss-40k:not(.ss-duo).ss-rare::after,
-.ss-border.ss-arc:not(.ss-duo).ss-rare::after,
-.ss-border.ss-c13:not(.ss-duo).ss-rare::after,
-.ss-border.ss-c14:not(.ss-duo).ss-rare::after,
-.ss-border.ss-c15:not(.ss-duo).ss-rare::after,
-.ss-border.ss-c16:not(.ss-duo).ss-rare::after,
-.ss-border.ss-cm1:not(.ss-duo).ss-rare::after,
-.ss-border.ss-cmd:not(.ss-duo).ss-rare::after,
-.ss-border.ss-cns:not(.ss-duo).ss-rare::after,
-.ss-border.ss-dft:not(.ss-duo).ss-rare::after,
-.ss-border.ss-dmc:not(.ss-duo).ss-rare::after,
-.ss-border.ss-drc:not(.ss-duo).ss-rare::after,
-.ss-border.ss-dsc:not(.ss-duo).ss-rare::after,
-.ss-border.ss-eos:not(.ss-duo).ss-rare::after,
-.ss-border.ss-fin:not(.ss-duo).ss-rare::after,
-.ss-border.ss-hop:not(.ss-duo).ss-rare::after,
-.ss-border.ss-inr:not(.ss-duo).ss-rare::after,
-.ss-border.ss-pc2:not(.ss-duo).ss-rare::after,
-.ss-border.ss-sis:not(.ss-duo).ss-rare::after,
-.ss-border.ss-tdm:not(.ss-duo).ss-rare::after,
-.ss-border.ss-tla:not(.ss-duo).ss-rare::after,
-.ss-border.ss-van:not(.ss-duo).ss-rare::after,
-.ss-border.ss-40k:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-arc:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-c13:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-c14:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-c15:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-c16:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-cm1:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-cmd:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-cns:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-dft:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-dmc:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-drc:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-dsc:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-eos:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-fin:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-hop:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-inr:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-pc2:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-sis:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-tdm:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-tla:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-van:not(.ss-duo).ss-mythic::after,
-.ss-border.ss-40k:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-arc:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-c13:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-c14:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-c15:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-c16:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-cm1:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-cmd:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-cns:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-dft:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-dmc:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-drc:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-dsc:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-eos:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-fin:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-hop:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-inr:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-pc2:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-sis:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-tdm:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-tla:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-van:not(.ss-duo).ss-timeshifted::after,
-.ss-border.ss-40k:not(.ss-duo).ss-foil::after,
-.ss-border.ss-arc:not(.ss-duo).ss-foil::after,
-.ss-border.ss-c13:not(.ss-duo).ss-foil::after,
-.ss-border.ss-c14:not(.ss-duo).ss-foil::after,
-.ss-border.ss-c15:not(.ss-duo).ss-foil::after,
-.ss-border.ss-c16:not(.ss-duo).ss-foil::after,
-.ss-border.ss-cm1:not(.ss-duo).ss-foil::after,
-.ss-border.ss-cmd:not(.ss-duo).ss-foil::after,
-.ss-border.ss-cns:not(.ss-duo).ss-foil::after,
-.ss-border.ss-dft:not(.ss-duo).ss-foil::after,
-.ss-border.ss-dmc:not(.ss-duo).ss-foil::after,
-.ss-border.ss-drc:not(.ss-duo).ss-foil::after,
-.ss-border.ss-dsc:not(.ss-duo).ss-foil::after,
-.ss-border.ss-eos:not(.ss-duo).ss-foil::after,
-.ss-border.ss-fin:not(.ss-duo).ss-foil::after,
-.ss-border.ss-hop:not(.ss-duo).ss-foil::after,
-.ss-border.ss-inr:not(.ss-duo).ss-foil::after,
-.ss-border.ss-pc2:not(.ss-duo).ss-foil::after,
-.ss-border.ss-sis:not(.ss-duo).ss-foil::after,
-.ss-border.ss-tdm:not(.ss-duo).ss-foil::after,
-.ss-border.ss-tla:not(.ss-duo).ss-foil::after,
-.ss-border.ss-van:not(.ss-duo).ss-foil::after {
-  color: #000;
-}
-.ss-border.ss-40k {
-  display: list-item;
-  list-style-position: inside;
-}
-.ss-border.ss-40k::before {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.ss-border.ss-40k::marker {
-  content: "\e99a";
-  color: #000;
-}
-.ss-border.ss-arc:after {
-  content: "\e657";
-}
-.ss-border.ss-c13:after {
-  content: "\e65b";
-}
-.ss-border.ss-c14:after {
-  content: "\e65d";
-}
-.ss-border.ss-c15:after {
-  content: "\e900";
-}
-.ss-border.ss-c16::before {
-  content: "\e910";
-}
-.ss-border.ss-c16::after {
-  content: "\e9e5";
-}
-.ss-border.ss-cm1:after {
-  content: "\e65a";
-}
-.ss-border.ss-cmd:after {
-  content: "\e658";
-}
-.ss-border.ss-cns:after {
-  content: "\e65c";
-}
-.ss-border.ss-dft::before {
-  content: "\e9e1";
-}
-.ss-border.ss-dft::after {
-  content: "\e9e0";
-}
-.ss-border.ss-dmc {
-  display: list-item;
-  list-style-position: inside;
-}
-.ss-border.ss-dmc::before {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.ss-border.ss-dmc::marker {
-  content: "\e996";
-  color: #000;
-}
-.ss-border.ss-drc {
-  display: list-item;
-  list-style-position: inside;
-}
-.ss-border.ss-drc::before {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.ss-border.ss-drc::marker {
-  content: "\e9ea";
-  color: #000;
-}
-.ss-border.ss-dsc {
-  display: list-item;
-  list-style-position: inside;
-}
-.ss-border.ss-dsc.ss-fw {
-  text-align: revert !important;
-}
-.ss-border.ss-dsc::before {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.ss-border.ss-dsc::marker {
-  content: "\e9dd";
-  color: #000;
-}
-.ss-border.ss-eos::before {
-  content: "\e9ff";
-}
-.ss-border.ss-eos::after {
-  content: "\ea00";
-}
-.ss-border.ss-fin::before {
-  content: "\e9ee";
-}
-.ss-border.ss-fin::after {
-  content: "\e9ef";
-}
-.ss-border.ss-hop:after {
-  content: "\e656";
-}
-.ss-border.ss-inr:after {
-  content: "\e9e3";
-}
-.ss-border.ss-pc2:after {
-  content: "\e659";
-}
-.ss-border.ss-sis::before {
-  content: "\e9b3";
-}
-.ss-border.ss-sis::after {
-  content: "\e9b2";
-}
-.ss-border.ss-tdm:after {
-  content: "\e9ec";
-}
-.ss-border.ss-tla {
-  display: list-item;
-  list-style-position: inside;
-}
-.ss-border.ss-tla::before {
-  content: "\e9fc";
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.ss-border.ss-tla::marker {
-  content: "\e9fd";
-  color: #000;
-}
-.ss-border.ss-van:after {
-  content: "\e655";
-}
-
-</style>
     <script>
       window.coreSets = JSON.parse(`
 [
@@ -2145,7 +377,8 @@
         "Expansion Code": "ICE",
         "Pre-release Date": "none",
         "Release Date": "June 1995",
-        "Total Cards": "383"
+        "Total Cards": "383",
+        "Block": "Ice Age Block"
     },
     {
         "Set": "Homelands",
@@ -2159,490 +392,560 @@
         "Expansion Code": "ALL",
         "Pre-release Date": "May 18, 1996",
         "Release Date": "June 10, 1996",
-        "Total Cards": "199"
+        "Total Cards": "199",
+        "Block": "Ice Age Block"
     },
     {
         "Set": "Mirage",
         "Expansion Code": "MIR",
         "Pre-release Date": "September 21, 1996",
         "Release Date": "October 7, 1996",
-        "Total Cards": "350"
+        "Total Cards": "350",
+        "Block": "Mirage Block"
     },
     {
         "Set": "Visions",
         "Expansion Code": "VIS",
         "Pre-release Date": "January 11, 1997",
         "Release Date": "February 3, 1997",
-        "Total Cards": "167"
+        "Total Cards": "167",
+        "Block": "Mirage Block"
     },
     {
         "Set": "Weatherlight",
         "Expansion Code": "WTH",
         "Pre-release Date": "May 31, 1997",
         "Release Date": "June 9, 1997",
-        "Total Cards": "167"
+        "Total Cards": "167",
+        "Block": "Mirage Block"
     },
     {
         "Set": "Tempest",
         "Expansion Code": "TMP",
         "Pre-release Date": "October 4, 1997",
         "Release Date": "October 13, 1997",
-        "Total Cards": "350"
+        "Total Cards": "350",
+        "Block": "Tempest Block"
     },
     {
         "Set": "Stronghold",
         "Expansion Code": "STH",
         "Pre-release Date": "February 21, 1998",
         "Release Date": "March 2, 1998",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Tempest Block"
     },
     {
         "Set": "Exodus",
         "Expansion Code": "EXO",
         "Pre-release Date": "June 6, 1998",
         "Release Date": "June 15, 1998",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Tempest Block"
     },
     {
         "Set": "Urza's Saga",
         "Expansion Code": "USG",
         "Pre-release Date": "October 3, 1998",
         "Release Date": "October 12, 1998",
-        "Total Cards": "350"
+        "Total Cards": "350",
+        "Block": "Urza's Block"
     },
     {
         "Set": "Urza's Legacy",
         "Expansion Code": "ULG",
         "Pre-release Date": "February 6, 1999",
         "Release Date": "February 15, 1999",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Urza's Block"
     },
     {
         "Set": "Urza's Destiny",
         "Expansion Code": "UDS",
         "Pre-release Date": "May 29, 1999",
         "Release Date": "June 7, 1999",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Urza's Block"
     },
     {
         "Set": "Mercadian Masques",
         "Expansion Code": "MMQ",
         "Pre-release Date": "September 25, 1999",
         "Release Date": "October 4, 1999",
-        "Total Cards": "350"
+        "Total Cards": "350",
+        "Block": "Masques Block"
     },
     {
         "Set": "Nemesis",
         "Expansion Code": "NEM",
         "Pre-release Date": "February 5, 2000",
         "Release Date": "February 14, 2000",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Masques Block"
     },
     {
         "Set": "Prophecy",
         "Expansion Code": "PCY",
         "Pre-release Date": "May 27, 2000",
         "Release Date": "June 5, 2000",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Masques Block"
     },
     {
         "Set": "Invasion",
         "Expansion Code": "INV",
         "Pre-release Date": "September 23, 2000",
         "Release Date": "October 2, 2000",
-        "Total Cards": "350"
+        "Total Cards": "350",
+        "Block": "Invasion Block"
     },
     {
         "Set": "Planeshift",
         "Expansion Code": "PLS",
         "Pre-release Date": "January 27, 2001",
         "Release Date": "February 5, 2001",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Invasion Block"
     },
     {
         "Set": "Apocalypse",
         "Expansion Code": "APC",
         "Pre-release Date": "May 26, 2001",
         "Release Date": "June 4, 2001",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Invasion Block"
     },
     {
         "Set": "Odyssey",
         "Expansion Code": "ODY",
         "Pre-release Date": "September 22, 2001",
         "Release Date": "October 1, 2001",
-        "Total Cards": "350"
+        "Total Cards": "350",
+        "Block": "Odyssey Block"
     },
     {
         "Set": "Torment",
         "Expansion Code": "TOR",
         "Pre-release Date": "January 26, 2002",
         "Release Date": "February 4, 2002",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Odyssey Block"
     },
     {
         "Set": "Judgment",
         "Expansion Code": "JUD",
         "Pre-release Date": "May 18, 2002",
         "Release Date": "May 27, 2002",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Odyssey Block"
     },
     {
         "Set": "Onslaught",
         "Expansion Code": "ONS",
         "Pre-release Date": "September 28, 2002",
         "Release Date": "October 7, 2002",
-        "Total Cards": "350"
+        "Total Cards": "350",
+        "Block": "Onslaught Block"
     },
     {
         "Set": "Legions",
         "Expansion Code": "LGN",
         "Pre-release Date": "January 25, 2003",
         "Release Date": "February 3, 2003",
-        "Total Cards": "145"
+        "Total Cards": "145",
+        "Block": "Onslaught Block"
     },
     {
         "Set": "Scourge",
         "Expansion Code": "SCG",
         "Pre-release Date": "May 17, 2003",
         "Release Date": "May 26, 2003",
-        "Total Cards": "143"
+        "Total Cards": "143",
+        "Block": "Onslaught Block"
     },
     {
         "Set": "Mirrodin",
         "Expansion Code": "MRD",
         "Pre-release Date": "September 20, 2003",
         "Release Date": "October 2, 2003",
-        "Total Cards": "306"
+        "Total Cards": "306",
+        "Block": "Mirrodin Block"
     },
     {
         "Set": "Darksteel",
         "Expansion Code": "DST",
         "Pre-release Date": "January 24, 2004",
         "Release Date": "February 6, 2004",
-        "Total Cards": "165"
+        "Total Cards": "165",
+        "Block": "Mirrodin Block"
     },
     {
         "Set": "Fifth Dawn",
         "Expansion Code": "5DN",
         "Pre-release Date": "May 22, 2004",
         "Release Date": "June 4, 2004",
-        "Total Cards": "165"
+        "Total Cards": "165",
+        "Block": "Mirrodin Block"
     },
     {
         "Set": "Champions of Kamigawa",
         "Expansion Code": "CHK",
         "Pre-release Date": "September 18, 2004",
         "Release Date": "October 1, 2004",
-        "Total Cards": "306"
+        "Total Cards": "306",
+        "Block": "Kamigawa Block"
     },
     {
         "Set": "Betrayers of Kamigawa",
         "Expansion Code": "BOK",
         "Pre-release Date": "January 22, 2005",
         "Release Date": "February 4, 2005",
-        "Total Cards": "165"
+        "Total Cards": "165",
+        "Block": "Kamigawa Block"
     },
     {
         "Set": "Saviors of Kamigawa",
         "Expansion Code": "SOK",
         "Pre-release Date": "May 21, 2005",
         "Release Date": "June 3, 2005",
-        "Total Cards": "165"
+        "Total Cards": "165",
+        "Block": "Kamigawa Block"
     },
     {
         "Set": "Ravnica: City of Guilds",
         "Expansion Code": "RAV",
         "Pre-release Date": "September 24, 2005",
         "Release Date": "October 7, 2005",
-        "Total Cards": "306"
+        "Total Cards": "306",
+        "Block": "Ravnica Block"
     },
     {
         "Set": "Guildpact",
         "Expansion Code": "GPT",
         "Pre-release Date": "January 21, 2006",
         "Release Date": "February 3, 2006",
-        "Total Cards": "165"
+        "Total Cards": "165",
+        "Block": "Ravnica Block"
     },
     {
         "Set": "Dissension",
         "Expansion Code": "DIS",
         "Pre-release Date": "April 22, 2006",
         "Release Date": "May 5, 2006",
-        "Total Cards": "180"
+        "Total Cards": "180",
+        "Block": "Ravnica Block"
     },
     {
         "Set": "Coldsnap",
         "Expansion Code": "CSP",
         "Pre-release Date": "July 8, 2006",
         "Release Date": "July 21, 2006",
-        "Total Cards": "155"
+        "Total Cards": "155",
+        "Block": "Ice Age Block"
     },
     {
         "Set": "Time Spiral",
         "Expansion Code": "TSP",
         "Pre-release Date": "September 23, 2006",
         "Release Date": "October 6, 2006",
-        "Total Cards": "422"
+        "Total Cards": "422",
+        "Block": "Time Spiral Block"
     },
     {
         "Set": "Planar Chaos",
         "Expansion Code": "PLC",
         "Pre-release Date": "January 20, 2007",
         "Release Date": "February 2, 2007",
-        "Total Cards": "165"
+        "Total Cards": "165",
+        "Block": "Time Spiral Block"
     },
     {
         "Set": "Future Sight",
         "Expansion Code": "FUT",
         "Pre-release Date": "April 21, 2007",
         "Release Date": "May 4, 2007",
-        "Total Cards": "180"
+        "Total Cards": "180",
+        "Block": "Time Spiral Block"
     },
     {
         "Set": "Lorwyn",
         "Expansion Code": "LRW",
         "Pre-release Date": "September 29, 2007",
         "Release Date": "October 12, 2007",
-        "Total Cards": "301"
+        "Total Cards": "301",
+        "Block": "Lorwyn Block"
     },
     {
         "Set": "Morningtide",
         "Expansion Code": "MOR",
         "Pre-release Date": "January 19, 2008",
         "Release Date": "February 1, 2008",
-        "Total Cards": "150"
+        "Total Cards": "150",
+        "Block": "Lorwyn Block"
     },
     {
         "Set": "Shadowmoor",
         "Expansion Code": "SHM",
         "Pre-release Date": "April 19, 2008",
         "Release Date": "May 2, 2008",
-        "Total Cards": "301"
+        "Total Cards": "301",
+        "Block": "Shadowmoor Block"
     },
     {
         "Set": "Eventide",
         "Expansion Code": "EVE",
         "Pre-release Date": "July 12, 2008",
         "Release Date": "July 25, 2008",
-        "Total Cards": "180"
+        "Total Cards": "180",
+        "Block": "Shadowmoor Block"
     },
     {
         "Set": "Shards of Alara",
         "Expansion Code": "ALA",
         "Pre-release Date": "September 27, 2008",
         "Release Date": "October 3, 2008",
-        "Total Cards": "249"
+        "Total Cards": "249",
+        "Block": "Alara Block"
     },
     {
         "Set": "Conflux",
         "Expansion Code": "CON",
         "Pre-release Date": "January 31, 2009",
         "Release Date": "February 6, 2009",
-        "Total Cards": "145"
+        "Total Cards": "145",
+        "Block": "Alara Block"
     },
     {
         "Set": "Alara Reborn",
         "Expansion Code": "ARB",
         "Pre-release Date": "April 25, 2009",
         "Release Date": "April 30, 2009",
-        "Total Cards": "145"
+        "Total Cards": "145",
+        "Block": "Alara Block"
     },
     {
         "Set": "Zendikar",
         "Expansion Code": "ZEN",
         "Pre-release Date": "September 26, 2009",
         "Release Date": "October 2, 2009",
-        "Total Cards": "249"
+        "Total Cards": "249",
+        "Block": "Zendikar Block"
     },
     {
         "Set": "Worldwake",
         "Expansion Code": "WWK",
         "Pre-release Date": "January 30, 2010",
         "Release Date": "February 5, 2010",
-        "Total Cards": "145"
+        "Total Cards": "145",
+        "Block": "Zenikdar Block"
     },
     {
         "Set": "Rise of the Eldrazi",
         "Expansion Code": "ROE",
         "Pre-release Date": "April 17, 2010",
         "Release Date": "April 23, 2010",
-        "Total Cards": "248"
+        "Total Cards": "248",
+        "Block": "Zenikdar Block"
     },
     {
         "Set": "Scars of Mirrodin",
         "Expansion Code": "SOM",
         "Pre-release Date": "September 25, 2010",
         "Release Date": "October 1, 2010",
-        "Total Cards": "249"
+        "Total Cards": "249",
+        "Block": "Scars of Mirrodin Block"
     },
     {
         "Set": "Mirrodin Besieged",
         "Expansion Code": "MBS",
         "Pre-release Date": "January 29, 2011",
         "Release Date": "February 4, 2011",
-        "Total Cards": "155"
+        "Total Cards": "155",
+        "Block": "Scars of Mirrodin Block"
     },
     {
         "Set": "New Phyrexia",
         "Expansion Code": "NPH",
         "Pre-release Date": "May 7, 2011",
         "Release Date": "May 13, 2011",
-        "Total Cards": "175"
+        "Total Cards": "175",
+        "Block": "Scars of Mirrodin Block"
     },
     {
         "Set": "Innistrad",
         "Expansion Code": "ISD",
         "Pre-release Date": "September 24, 2011",
         "Release Date": "September 30, 2011",
-        "Total Cards": "264"
+        "Total Cards": "264",
+        "Block": "Innistrad Block"
     },
     {
         "Set": "Dark Ascension",
         "Expansion Code": "DKA",
         "Pre-release Date": "January 28, 2012",
         "Release Date": "February 3, 2012",
-        "Total Cards": "158"
+        "Total Cards": "158",
+        "Block": "Innistrad Block"
     },
     {
         "Set": "Avacyn Restored",
         "Expansion Code": "AVR",
         "Pre-release Date": "April 28, 2012",
         "Release Date": "May 4, 2012",
-        "Total Cards": "244"
+        "Total Cards": "244",
+        "Block": "Innistrad Block"
     },
     {
         "Set": "Return to Ravnica",
         "Expansion Code": "RTR",
         "Pre-release Date": "September 29, 2012",
         "Release Date": "October 5, 2012",
-        "Total Cards": "274"
+        "Total Cards": "274",
+        "Block": "Return to Ravnica Block"
     },
     {
         "Set": "Gatecrash",
         "Expansion Code": "GTC",
         "Pre-release Date": "January 26, 2013",
         "Release Date": "February 1, 2013",
-        "Total Cards": "249"
+        "Total Cards": "249",
+        "Block": "Return to Ravnica Block"
     },
     {
         "Set": "Dragon's Maze",
         "Expansion Code": "DGM",
         "Pre-release Date": "April 27, 2013",
         "Release Date": "May 3, 2013",
-        "Total Cards": "156"
+        "Total Cards": "156",
+        "Block": "Return to Ravnica Block"
     },
     {
         "Set": "Theros",
         "Expansion Code": "THS",
         "Pre-release Date": "September 21, 2013",
         "Release Date": "September 27, 2013",
-        "Total Cards": "249"
+        "Total Cards": "249",
+        "Block": "Theros Block"
     },
     {
         "Set": "Born of the Gods",
         "Expansion Code": "BNG",
         "Pre-release Date": "February 1, 2014",
         "Release Date": "February 7, 2014",
-        "Total Cards": "165"
+        "Total Cards": "165",
+        "Block": "Theros Block"
     },
     {
         "Set": "Journey into Nyx",
         "Expansion Code": "JOU",
         "Pre-release Date": "April 26, 2014",
         "Release Date": "May 2, 2014",
-        "Total Cards": "165"
+        "Total Cards": "165",
+        "Block": "Theros Block"
     },
     {
         "Set": "Khans of Tarkir",
         "Expansion Code": "KTK",
         "Pre-release Date": "September 20, 2014",
         "Release Date": "September 26, 2014",
-        "Total Cards": "269"
+        "Total Cards": "269",
+        "Block": "Khans of Tarkir Block"
     },
     {
         "Set": "Fate Reforged",
         "Expansion Code": "FRF",
         "Pre-release Date": "January 17, 2015",
         "Release Date": "January 23, 2015",
-        "Total Cards": "185"
+        "Total Cards": "185",
+        "Block": "Khans of Tarkir Block"
     },
     {
         "Set": "Dragons of Tarkir",
         "Expansion Code": "DTK",
         "Pre-release Date": "March 21, 2015",
         "Release Date": "March 27, 2015",
-        "Total Cards": "264"
+        "Total Cards": "264",
+        "Block": "Khans of Tarkir Block"
     },
     {
         "Set": "Battle for Zendikar",
         "Expansion Code": "BFZ",
         "Pre-release Date": "September 26, 2015",
         "Release Date": "October 2, 2015",
-        "Total Cards": "274"
+        "Total Cards": "274",
+        "Block": "Battle for Zendikar Block"
     },
     {
         "Set": "Oath of the Gatewatch",
         "Expansion Code": "OGW",
         "Pre-release Date": "January 16, 2016",
         "Release Date": "January 22, 2016",
-        "Total Cards": "184"
+        "Total Cards": "184",
+        "Block": "Battle for Zendikar Block"
     },
     {
         "Set": "Shadows over Innistrad",
         "Expansion Code": "SOI",
         "Pre-release Date": "April 2, 2016",
         "Release Date": "April 8, 2016",
-        "Total Cards": "297"
+        "Total Cards": "297",
+        "Block": "Shadows over Innistrad Block"
     },
     {
         "Set": "Eldritch Moon",
         "Expansion Code": "EMN",
         "Pre-release Date": "July 16, 2016",
         "Release Date": "July 22, 2016",
-        "Total Cards": "205"
+        "Total Cards": "205",
+        "Block": "Shadows over Innistrad Block"
     },
     {
         "Set": "Kaladesh",
         "Expansion Code": "KLD",
         "Pre-release Date": "September 24, 2016",
         "Release Date": "September 30, 2016",
-        "Total Cards": "264"
+        "Total Cards": "264",
+        "Block": "Kaladesh Block"
     },
     {
         "Set": "Aether Revolt",
         "Expansion Code": "AER",
         "Pre-release Date": "January 14, 2017",
         "Release Date": "January 20, 2017",
-        "Total Cards": "184"
+        "Total Cards": "184",
+        "Block": "Kaladesh Block"
     },
     {
         "Set": "Amonkhet",
         "Expansion Code": "AKH",
         "Pre-release Date": "April 22, 2017",
         "Release Date": "April 28, 2017",
-        "Total Cards": "269"
+        "Total Cards": "269",
+        "Block": "Amonkhet Block"
     },
     {
         "Set": "Hour of Devastation",
         "Expansion Code": "HOU",
         "Pre-release Date": "July 8, 2017",
         "Release Date": "July 14, 2017",
-        "Total Cards": "199"
+        "Total Cards": "199",
+        "Block": "Amonkhet Block"
     },
     {
         "Set": "Ixalan",
         "Expansion Code": "XLN",
         "Pre-release Date": "September 23, 2017",
         "Release Date": "September 29, 2017",
-        "Total Cards": "279"
+        "Total Cards": "279",
+        "Block": "Ixalan Block"
     },
     {
         "Set": "Rivals of Ixalan",
         "Expansion Code": "RIX",
         "Pre-release Date": "January 13, 2018",
         "Release Date": "January 19, 2018",
-        "Total Cards": "196"
+        "Total Cards": "196",
+        "Block": "Ixalan Block"
     },
     {
         "Set": "Dominaria",
@@ -2850,141 +1153,281 @@
 ]
       `);
 
-      window.bigSetThreshold = 210;
-      window.onlyPickBefore = "";
-      window.disallowedSetCodes = "";
+      function getLocalStorageValue(key, defaultIfNull) {
+        const value = window.localStorage.getItem(key);
+        if (!value) return defaultIfNull;
+        try {
+          return JSON.parse(value);
+        } catch (e) {
+          return defaultIfNull;
+        }
+      }
+
+      window.bigSetThreshold = +getLocalStorageValue("big-set-threshold", 210);
+      if (!Number.isInteger(window.bigSetThreshold)) { // checked for poisoned cache
+        window.bigSetThreshold = 210;
+        window.localStorage.removeItem("big-set-threshold");
+      }
+      window.disallowedSetCodes = getLocalStorageValue("disallowed-set-codes",  []);
+      window.onlyPickBeforeDate = getLocalStorageValue("only-pick-before-date", "May 3, 2019"); // release date of War of the Spark
+      window.onlyPickAfterDate  = getLocalStorageValue("only-pick-after-date",  "October 7, 1996"); // release date of Mirage
+
+      function dateToString(date) { // in a way that is friendly for input[type=date]. How is this not a standard function?
+        return `${date.getFullYear().toString().padStart(4, "0")}-${date.getMonth().toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+      }
+
+      function handleDatePickerTextInputChange(e, datePicker) {
+        e.target.classList.remove("invalid");
+        let currentValue = "";
+        const value = e.target.value.toLowerCase();
+        for (const set of window.coreSets) {
+          if (value == set["Expansion Code"].toLowerCase()) {
+            currentValue = set["Release Date"];
+            datePicker.value = dateToString(new Date(currentValue));
+            return currentValue;
+          }
+        }
+        for (const set of window.sets) {
+          if (value == set["Expansion Code"].toLowerCase()) {
+            currentValue = set["Release Date"];
+            datePicker.value = dateToString(new Date(currentValue));
+            return currentValue;
+          }
+        }
+        if (currentValue == "") if (e.target.value.length > 0) e.target.classList.add("invalid");
+        return currentValue;
+      }
 
       document.addEventListener("DOMContentLoaded", () => {
-          const bst = document.getElementById("bst");
-          bst.addEventListener("input", e => {
-              window.bigSetThreshold = e.target.value;
-              document.getElementById("bst-label").innerText = `Big Set Threshold (${window.bigSetThreshold}): `;
-          });
+        const bst = document.getElementById("bst");
+        bst.value = window.bigSetThreshold;
+        document.getElementById("bst-label").innerText = `Big Set Threshold (${window.bigSetThreshold}): `;
+        bst.addEventListener("input", e => {
+          window.bigSetThreshold = e.target.value;
+          window.localStorage.setItem("big-set-threshold", e.target.value);
+          document.getElementById("bst-label").innerText = `Big Set Threshold (${window.bigSetThreshold}): `;
+        });
 
-          const bsc = document.getElementById("bsc");
-          bsc.addEventListener("input", e => {
-              window.disallowedSetCodes = e.target.value.toLowerCase().split(/\s/);
-              console.log("CHANGE bsc", window.disallowedSetCodes);
-          });
+        const bsc = document.getElementById("bsc");
+        bsc.addEventListener("input", e => {
+          window.disallowedSetCodes = e.target.value.toLowerCase().split(/\s/);
+          console.log("CHANGE bsc", window.disallowedSetCodes);
+        });
 
-          const opbd = document.getElementById("opbd");
-          opbd.addEventListener("change", e => {
-              console.log("CHANGE opbd", e);
-          });
-          const opbt = document.getElementById("opbt");
-          opbt.addEventListener("input", e => {
-              console.log("CHANGE obpt", e);
-          });
+        const otd = document.getElementById("otd");
+        const ott = document.getElementById("ott");
+        const ntt = document.getElementById("ntt");
+        const ntd = document.getElementById("ntd");
+
+        if (window.onlyPickBeforeDate) {
+          otd.value = dateToString(new Date(window.onlyPickBeforeDate));
+        }
+        if (window.onlyPickAfterDate) {
+          ntd.value = dateToString(new Date(window.onlyPickAfterDate));
+        }
+
+        // 'older-than' inputs:
+        otd.addEventListener("change", e => {
+          window.onlyPickBeforeDate = e.target.value;
+        });
+        ott.addEventListener("input", e => {
+          window.onlyPickBeforeDate = handleDatePickerTextInputChange(e, otd);
+          if (new Date(window.onlyPickAfterDate) > new Date(window.onlyPickBeforeDate)) {
+            otd.classList.add("invalid");
+            ntd.classList.add("invalid");
+          }
+        });
+        // 'newer-than' inputs:
+        ntd.addEventListener("change", e => {
+          window.onlyPickAfterDate = e.target.value;
+        });
+        ntt.addEventListener("input", e => {
+          window.onlyPickAfterDate = handleDatePickerTextInputChange(e, ntd);
+          if (new Date(window.onlyPickAfterDate) > new Date(window.onlyPickBeforeDate)) {
+            otd.classList.add("invalid");
+            ntd.classList.add("invalid");
+          }
+        });
       });
 
+      function setIsPickable(set) {
+        for (const disallowed of window.disallowedSetCodes) {
+          if (disallowed.toLowerCase().includes(set["Expansion Code"].toLowerCase())) {
+            console.warn(`Skipping set ${set["Set"]} because it's explicitly disallowed. (Disallowed set codes are: ${window.disallowedSetCodes}).`);
+            return false;
+          }
+        }
+        if (window.onlyPickBeforeDate) {
+          if (new Date(window.onlyPickBeforeDate) < new Date(set["Release Date"])) {
+            console.warn(`Skipping set ${set["Set"]} because it's too new. (Asking for before ${window.onlyPickBeforeDate} and release date is: ${set["Release Date"]}).`);
+            return false;
+          }
+        }
+        if (window.onlyPickAfterDate) {
+          if (new Date(window.onlyPickAfterDate) > new Date(set["Release Date"])) {
+            console.warn(`Skipping set ${set["Set"]} because it's too old. (Asking for before ${window.onlyPickAfterDate} and release date is: ${set["Release Date"]}).`);
+            return false;
+          }
+        }
+        return true;
+      }
 
       function spinTheWheel() {
-
         const grid = document.querySelector(".chosen-sets-grid");
         grid.innerHTML = "";
 
-        const coreSetOptions = [];
+        const avoidSameBlock = document.getElementById("skip-same-block").checked;
+
+        if (window.onlyPickAfterDate && window.onlyPickBeforeDate) {
+          if (new Date(window.onlyPickBeforeDate) < new Date(window.onlyPickAfterDate)) {
+            alert(`'Newer Than' date of ${window.onlyPickAfterDate} is after the 'Older Than' date of ${window.onlyPickBeforeDate}`);
+            return;
+          }
+        }
+
+        const coreSetOptions  = [];
         const smallSetOptions = [];
-        const bigSetOptions = [];
+        const bigSetOptions   = [];
 
         for (const set of window.sets) {
-            if (+set["Total Cards"] >= bigSetThreshold) {
-                if (!window.disallowedSetCodes.includes(set["Expansion Code"].toLowerCase())) bigSetOptions.push(set);
-            } else {
-                if (!window.disallowedSetCodes.includes(set["Expansion Code"].toLowerCase())) smallSetOptions.push(set);
-            }
+          if (+set["Total Cards"] >= bigSetThreshold) {
+            if (setIsPickable(set)) bigSetOptions.push(set);
+          } else {
+            if (setIsPickable(set)) smallSetOptions.push(set);
+          }
         }
         for (const set of window.coreSets) {
-            if (!window.disallowedSetCodes.includes(set["Expansion Code"].toLowerCase())) coreSetOptions.push(set);
+          if (setIsPickable(set)) coreSetOptions.push(set);
         }
 
         if (coreSetOptions.length < 1) {
-           alert("Not enough core set options with the configured settings! Tweak settings and try spinning again.");
-           return;
+          alert("Not enough core set options with the configured settings! Tweak settings and try spinning again.");
+          return;
         }
         if (smallSetOptions.length < 3) {
-           alert("Not enough small set options with the configured settings! Tweak settings and try spinning again.");
-           return;
+          alert("Not enough small set options with the configured settings! Tweak settings and try spinning again.");
+          return;
         }
         if (bigSetOptions.length < 2) {
-           alert("Not enough big set options with the configured settings! Tweak settings and try spinning again.");
-           return;
+          alert("Not enough big set options with the configured settings! Tweak settings and try spinning again.");
+          return;
         }
 
+        let i = 0;
         const smallSetChoices = [];
-        while (smallSetChoices.length < 2) {
-            const choice = smallSetOptions[Math.floor(Math.random() * smallSetOptions.length)];
-            if (window.disallowedSetCodes.includes(choice["Expansion Code"].toLowerCase())) continue;
-            if (!smallSetChoices.includes(choice)) smallSetChoices.push(choice);
+        outer1: while (smallSetChoices.length < 3) {
+          if (i > 20) {
+            alert(`We tried a few times to find a valid small set, and failed! Tweak settings and try spining again. This could be due to a too restrictive date range.`);
+            return;
+          }
+          i++;
+          const choice = smallSetOptions[Math.floor(Math.random() * smallSetOptions.length)];
+          if (smallSetChoices.includes(choice)) continue;
+          if (window.disallowedSetCodes.includes(choice["Expansion Code"].toLowerCase())) continue;
+          if (avoidSameBlock) {
+            for (const set of smallSetChoices) {
+                if (set["Block"] && set["Block"] == choice["Block"]) {
+                console.warn(`Skipping small set ${choice["Set"]} because it's in the same block as another choice ${set["Set"]}`);
+                continue outer1;
+                }
+            }
+          }
+          smallSetChoices.push(choice);
         }
 
+        i = 0;
         const bigSetChoices = [];
-        while (bigSetChoices.length < 3) {
-            const choice = bigSetOptions[Math.floor(Math.random() * bigSetOptions.length)];
-            if (!bigSetChoices.includes(choice)) bigSetChoices.push(choice);
+        outer2: while (bigSetChoices.length < 2) {
+          if (i > 20) {
+            alert(`We tried a few times to find a valid big set, and failed! Tweak settings and try spining again. This could be due to a too restrictive date range.`);
+            return;
+          }
+          i++;
+          const choice = bigSetOptions[Math.floor(Math.random() * bigSetOptions.length)];
+          if (bigSetChoices.includes(choice)) continue;
+          if (avoidSameBlock) {
+            for (const set of smallSetChoices) {
+                if (set["Block"] && set["Block"] == choice["Block"]) {
+                console.warn(`Skipping small set ${choice["Set"]} because it's in the same block as another choice ${set["Set"]}`);
+                continue outer2;
+                }
+            }
+            for (const set of bigSetChoices) {
+                if (set["Block"] && set["Block"] == choice["Block"]) {
+                console.warn(`Skipping big set ${choice["Set"]} because it's in the same block as another choice ${set["Set"]}`);
+                continue outer2;
+                }
+            }
+          }
+          bigSetChoices.push(choice);
         }
 
         const coreSetChoice = coreSetOptions[Math.floor(Math.random() * coreSetOptions.length)];
 
         function appendSet(choice, label) {
-            const c = document.createElement("div");
-            c.classList.add("chosen-set");
-            c.innerHTML = `
-              <span class="set-label">${label}</span>
-
+          const c = document.createElement("div");
+          c.classList.add("chosen-set-container");
+          c.innerHTML = `
+            <div class="chosen-set-header"></div>
+            <div class="chosen-set">
               <div class="flex-col">
-                <div class="flex">
-                  <i class="set-symbol ss ss-${choice['Expansion Code'].toLowerCase()}"></i>
-                  <h3 class="set-name">${choice.Set}</h3>
-                </div>
+                <h3 class="set-name" title="${choice.Set}">${choice.Set}</h3>
+                <span class="set-block">${choice['Block'] ?? ''}</span>
+              </div>
+
+              <div class="flex">
+                <i class="set-symbol ss ss-${choice['Expansion Code'].toLowerCase()}"></i>
                 <span class="expansion-code">${choice["Expansion Code"]}</span>
               </div>
 
               <div class="flex-col">
+                <span class="set-label">${label}</span>
                 <span class="total-cards">${choice["Total Cards"]} Cards</span>
                 <span class="release-date">Released: ${choice["Release Date"]}</span>
               </div>
-            `;
-           grid.appendChild(c);
+            </div>
+          `;
+          grid.appendChild(c);
         }
 
-        appendSet(smallSetChoices[0], "Small Set");
-        appendSet(coreSetChoice, "Core Set");
-        appendSet(smallSetChoices[1], "Small Set");
         for (const choice of bigSetChoices) {
-            appendSet(choice, "Big Set");
+          appendSet(choice, "Big Set");
+        }
+        appendSet(coreSetChoice, "Core Set");
+        for (const choice of smallSetChoices) {
+          appendSet(choice, "Small Set");
         }
 
         if (document.getElementById("confetti-cb").checked) {
-            const w = document.querySelector(".wrapper");
-            if (w) document.body.removeChild(w);
-            function r(x) {
-                return Math.floor(Math.random() * x);
-            }
+          const w = document.querySelector(".wrapper");
+          if (w) document.body.removeChild(w);
+          function r(x) {
+            return Math.floor(Math.random() * x);
+          }
 
-            const colors = [
-                "orange", "red", "yellow", "pink", "magenta", "purple", "blue", "green", "lime", "salmon"
-            ];
-            const wrapper = document.createElement("div");
-            wrapper.style.width = "100%";
-            wrapper.classList.add("wrapper");
-            for (let i = 0; i < 50; i++) {
-                const c = document.createElement("div");
-                c.classList.add("confetti");
-                const w = r(10) + 5;
-                const l = r(100) + 10;
-                c.style.width = `${w}px`;
-                c.style.height = `${w*0.4}px`;
-                c.style.backgroundColor = colors[r(colors.length)];
-                c.style.left = `${l}%`;
-                c.style.transform = `rotate(${Math.random() * 360}deg)`;
-                c.style.animationName = `drop`;
-                c.style.animationDuration = `${10 * Math.random() + 5}s`
-                //c.style.animationDelay = `${5 * Math.random()}s`;
-                c.style.animationIterationCount = `${5}`;
-                wrapper.appendChild(c);
-            }
-            document.body.appendChild(wrapper);
+          const colors = [
+            "orange", "red", "yellow", "pink", "magenta", "purple", "blue", "green", "lime", "salmon"
+          ];
+          const wrapper = document.createElement("div");
+          wrapper.style.width = "100%";
+          wrapper.classList.add("wrapper");
+          for (let i = 0; i < 50; i++) {
+            const c = document.createElement("div");
+            c.classList.add("confetti");
+            const w = r(10) + 5;
+            const l = r(100) + 10;
+            c.style.width = `${w}px`;
+            c.style.height = `${w*0.4}px`;
+            c.style.backgroundColor = colors[r(colors.length)];
+            c.style.left = `${l}%`;
+            c.style.transform = `rotate(${Math.random() * 360}deg)`;
+            c.style.animationName = `drop`;
+            c.style.animationDuration = `${10 * Math.random() + 5}s`
+            //c.style.animationDelay = `${5 * Math.random()}s`;
+            c.style.animationIterationCount = `${5}`;
+            wrapper.appendChild(c);
+          }
+          document.body.appendChild(wrapper);
         }
       }
     </script>
@@ -2992,24 +1435,31 @@
   <body>
     <main>
         <div class="flex-col">
-          <h1 class="header">Set Roulette Generator</h1>
+          <h1 class="header">MTG Set Roulette Generator</h1>
 
           <div class="form-body">
             <label id="bst-label" for="bst">Big Set Threshold (210): </label>
             <input id="bst" type="range" min="120" max="300" value="210" onchange="" />
 
-            <div style="display: none;">
-            <label for="opbd">Only Pick Sets After: </label>
-            <div class="flex">
-              <input id="opbd" type="date" />
+            <label>Only Newer Than: </label>
+            <div class="date-row">
+              <input id="ntd" type="date" />
               <span>OR</span>
-              <input id="opbt" type="text" placeholder="set code, lowercase" />
+              <input id="ntt" type="text" placeholder="set code" />
             </div>
+
+            <label>Only Older Than: </label>
+            <div class="date-row">
+              <input id="otd" type="date" />
+              <span>OR</span>
+              <input id="ott" type="text" placeholder="set code" />
             </div>
 
             <label for="bsc">Blacklisted Set Codes: </label>
             <input id="bsc" type="text" placeholder="set codes, space-separated" onchange="" />
 
+            <label for="skip-same-block" title="If enabled, you won't be able to roll multiple big/small sets from the same block.">Avoid Same Block:</label>
+            <input id="skip-same-block" type="checkbox" checked/>
           </div>
 
           <div class="flex action-row">
