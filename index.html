@@ -22,6 +22,9 @@
       .invalid {
         outline: 1px solid red;
       }
+      a {
+        color: orange;
+      }
       main {
         color: white;
         font-size: 24px;
@@ -29,15 +32,15 @@
         min-height: 100vh;
         width: 100%;
         height: 100%;
-        padding-bottom: 1rem;
+        padding: 1rem 0;
 
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
 
         --s: 6px;
-        --c1: #3b3239;
+        --c1: #2b2229;
         --c2: #0E0909;
         --box-shadow-rgb: 0, 0, 0;
         --box-shadow: 0 6px 16px 0 rgba(var(--box-shadow-rgb), 0.08), 0 3px 6px -4px rgba(var(--box-shadow-rgb), 0.12), 0 9px 28px 8px rgba(var(--box-shadow-rgb), 0.05);
@@ -109,7 +112,6 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1rem;
         padding: 1rem;
-        height: calc(min(20rem, 40vh) * 2);
       }
       .header {
         border: 1px solid #3b3239;
@@ -117,14 +119,9 @@
         padding: 2rem;
         box-shadow: var(--box-shadow);
       }
-      .chosen-set-container {
-        position: relative;
-      }
       .chosen-set {
         background: #0E0909;
         border-radius: 0 0 0.5rem 0.5rem;
-        width: min(30rem, 20vw);
-        height: min(20rem, 40vh);
         display: grid;
         grid-template-rows: 1fr 1fr 1fr;
         justify-content: space-around;
@@ -134,7 +131,7 @@
         font-weight: bold;
         gap: 0.5rem;
         box-shadow: var(--box-shadow);
-        padding-bottom: 0.5rem;
+        padding: 0.5rem;
       }
       .flex {
         display: flex;
@@ -170,6 +167,9 @@
         gap: 3rem;
         background-color: black;
         padding: 2rem;
+      }
+      #links {
+        display: none;
       }
       .date-row {
         display: grid;
@@ -1366,7 +1366,6 @@
 
         function appendSet(choice, label) {
           const c = document.createElement("div");
-          c.classList.add("chosen-set-container");
           c.innerHTML = `
             <div class="chosen-set-header"></div>
             <div class="chosen-set">
@@ -1390,6 +1389,7 @@
           grid.appendChild(c);
         }
 
+        // append set cards
         for (const choice of bigSetChoices) {
           appendSet(choice, "Big Set");
         }
@@ -1398,7 +1398,26 @@
           appendSet(choice, "Small Set");
         }
 
-        if (document.getElementById("confetti-cb").checked) {
+        // construct links
+        document.getElementById("links").style.display = "flex";
+        const setCodes = [...bigSetChoices, coreSetChoice, ...smallSetChoices].map(s => s["Expansion Code"]);
+        const scryfall = document.getElementById("scryfall");
+        function constructScryfallLink() {
+          let href = `https://scryfall.com/search?q=`;
+          href += encodeURIComponent("(" + setCodes.map(c => "e:" + c).join(" or ") + ")");
+          return href;
+        }
+        scryfall.href = constructScryfallLink();
+
+        const dawnglare = document.getElementById("dawnglare");
+        function constructDawnglareLink() {
+          let href = "https://mtg.dawnglare.com/?p=viz&s=";
+          href += encodeURIComponent("/?p=viz&s=" + setCodes.join("|"));
+          return href;
+        }
+        dawnglare.href = constructDawnglareLink();
+
+        if (document.getElementById("confetti-cb").checked) { // do confetti
           const w = document.querySelector(".wrapper");
           if (w) document.body.removeChild(w);
           function r(x) {
@@ -1434,44 +1453,48 @@
   </head>
   <body>
     <main>
-        <div class="flex-col">
-          <h1 class="header">MTG Set Roulette Generator</h1>
+      <div class="flex-col">
+        <h1 class="header">MTG Set Roulette Generator</h1>
 
-          <div class="form-body">
-            <label id="bst-label" for="bst">Big Set Threshold (210): </label>
-            <input id="bst" type="range" min="120" max="300" value="210" onchange="" />
+        <div class="form-body">
+          <label id="bst-label" for="bst">Big Set Threshold (210): </label>
+          <input id="bst" type="range" min="120" max="300" value="210" onchange="" />
 
-            <label>Only Newer Than: </label>
-            <div class="date-row">
-              <input id="ntd" type="date" />
-              <span>OR</span>
-              <input id="ntt" type="text" placeholder="set code" />
-            </div>
-
-            <label>Only Older Than: </label>
-            <div class="date-row">
-              <input id="otd" type="date" />
-              <span>OR</span>
-              <input id="ott" type="text" placeholder="set code" />
-            </div>
-
-            <label for="bsc">Blacklisted Set Codes: </label>
-            <input id="bsc" type="text" placeholder="set codes, space-separated" onchange="" />
-
-            <label for="skip-same-block" title="If enabled, you won't be able to roll multiple big/small sets from the same block.">Avoid Same Block:</label>
-            <input id="skip-same-block" type="checkbox" checked/>
+          <label>Only Newer Than: </label>
+          <div class="date-row">
+            <input id="ntd" type="date" />
+            <span>OR</span>
+            <input id="ntt" type="text" placeholder="set code" />
           </div>
 
-          <div class="flex action-row">
-            <div class="flex">
-              <label for="confetti-cb">Fanfare?</label>
-              <input id="confetti-cb" type="checkbox" />
-            </div>
-
-            <button onclick="spinTheWheel()">Spin the wheel!</button>
+          <label>Only Older Than: </label>
+          <div class="date-row">
+            <input id="otd" type="date" />
+            <span>OR</span>
+            <input id="ott" type="text" placeholder="set code" />
           </div>
+
+          <label for="bsc">Blacklisted Set Codes: </label>
+          <input id="bsc" type="text" placeholder="set codes, space-separated" onchange="" />
+
+          <label for="skip-same-block" title="If enabled, you won't be able to roll multiple big/small sets from the same block.">Avoid Same Block:</label>
+          <input id="skip-same-block" type="checkbox" checked/>
         </div>
+
+        <div class="flex action-row">
+          <div class="flex">
+            <label for="confetti-cb">Fanfare?</label>
+            <input id="confetti-cb" type="checkbox" />
+          </div>
+
+          <button onclick="spinTheWheel()">Spin the wheel!</button>
+        </div>
+      </div>
       <div class="chosen-sets-grid"></div>
+      <div id="links" class="flex action-row">
+        <a id="scryfall" target="_blank" href="https://scryfall.com">Scryfall</a>
+        <a id="dawnglare" target="_blank">Dawnglare Visualizer</a>
+      </div>
     </main>
     <noscript>This site requires Javascript, sorry :(</noscript>
   </body>
